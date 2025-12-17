@@ -4,25 +4,26 @@ import { Float, Text3D, Center } from '@react-three/drei';
 import { Code2, Database, Palette, Zap, Globe, Cpu } from 'lucide-react';
 import * as THREE from 'three';
 
+
 const skills = [
   {
     icon: Code2,
     title: 'Frontend Development',
-    description: 'React, TypeScript, Next.js, Tailwind CSS',
+    description: 'React, Javascript, Next.js, Tailwind CSS',
     color: 'from-blue-500 to-cyan-500',
   },
   {
     icon: Database,
     title: 'Backend Development',
-    description: 'Node.js, Python, Motoko, PostgreSQL',
+    description: 'Node.js, Postman, MongoDB, RESTful APIs',
     color: 'from-green-500 to-emerald-500',
   },
-  {
-    icon: Palette,
-    title: 'UI/UX Design',
-    description: 'Figma, Adobe XD, Responsive Design',
-    color: 'from-purple-500 to-pink-500',
-  },
+  // {
+  //   icon: Palette,
+  //   title: 'UI/UX Design',
+  //   description: 'Figma, Adobe XD, Responsive Design',
+  //   color: 'from-purple-500 to-pink-500',
+  // },
   {
     icon: Zap,
     title: 'Performance',
@@ -43,18 +44,22 @@ const skills = [
   },
 ];
 
+
+
 const technologies = [
-  { name: 'React', icon: '/assets/generated/react-icon.dim_64x64.png' },
-  { name: 'TypeScript', icon: '/assets/generated/typescript-icon.dim_64x64.png' },
-  { name: 'GSAP', icon: '/assets/generated/gsap-icon.dim_64x64.png' },
-  { name: 'Framer Motion', icon: '/assets/generated/framer-motion-icon.dim_64x64.png' },
-  { name: 'Tailwind', icon: '/assets/generated/tailwind-icon.dim_64x64.png' },
-  { name: 'Node.js', icon: '/assets/generated/nodejs-icon.dim_64x64.png' },
-  { name: 'JavaScript', icon: '/assets/generated/javascript-icon.dim_64x64.png' },
-  { name: 'HTML5', icon: '/assets/generated/html5-icon.dim_64x64.png' },
-  { name: 'CSS3', icon: '/assets/generated/css3-icon.dim_64x64.png' },
-  { name: 'Git', icon: '/assets/generated/git-icon.dim_64x64.png' },
+  { name: "React", icon: "/icons/react.svg" },
+  { name: "JavaScript", icon: "/icons/js.svg" },
+  { name: "Node.js", icon: "/icons/nodejs.svg" },
+  { name: "MongoDB", icon: "/icons/mongodb.svg" },
+  { name: "Postman", icon: "/icons/postman.svg" },
+  { name: "Tailwind CSS", icon: "/icons/tailwind.svg" },
+  { name: "Framer Motion", icon: "/icons/framer.svg" },
+  { name: "Git", icon: "/icons/git.svg" },
+  { name: "HTML5", icon: "/icons/html.svg" },
+  { name: "CSS3", icon: "/icons/css.svg" },
 ];
+
+
 
 // 3D Floating Tech Icon with click interaction
 function FloatingTechIcon({ position, index, onClick }: { position: [number, number, number]; index: number; onClick: () => void }) {
@@ -66,7 +71,7 @@ function FloatingTechIcon({ position, index, onClick }: { position: [number, num
     if (!meshRef.current) return;
     meshRef.current.rotation.y = state.clock.elapsedTime * 0.5 + index;
     meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime + index) * 0.2;
-    
+
     const targetScale = clicked ? 1.5 : hovered ? 1.3 : 1;
     meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
   });
@@ -106,16 +111,16 @@ function SkillsScene({ onIconClick }: { onIconClick: (index: number) => void }) 
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1} />
       <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ff00ff" />
-      
+
       {technologies.slice(0, 6).map((_, index) => {
         const angle = (index / 6) * Math.PI * 2;
         const radius = 3;
         const x = Math.cos(angle) * radius;
         const z = Math.sin(angle) * radius;
         return (
-          <FloatingTechIcon 
-            key={index} 
-            position={[x, 0, z]} 
+          <FloatingTechIcon
+            key={index}
+            position={[x, 0, z]}
             index={index}
             onClick={() => onIconClick(index)}
           />
@@ -186,11 +191,11 @@ export function Skills() {
 
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div 
+        <div
           className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl transition-transform duration-300 idle-pulse"
           style={{ transform: `translate(${mousePos.x * 0.02}px, ${mousePos.y * 0.02}px)` }}
         />
-        <div 
+        <div
           className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl transition-transform duration-300 idle-pulse"
           style={{ transform: `translate(${mousePos.x * -0.02}px, ${mousePos.y * -0.02}px)` }}
         />
@@ -213,14 +218,13 @@ export function Skills() {
             const Icon = skill.icon;
             const cardMouseX = mousePos.x - (index % 3) * 300;
             const cardMouseY = mousePos.y - Math.floor(index / 3) * 300;
-            
+
             return (
               <div
                 key={skill.title}
-                className={`group relative p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-500 cursor-pointer hover:scale-105 hover:-translate-y-2 magnetic-element ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ 
+                className={`group relative p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-500 cursor-pointer hover:scale-105 hover:-translate-y-2 magnetic-element ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                style={{
                   transitionDelay: `${index * 100}ms`,
                   transform: `perspective(1000px) rotateX(${cardMouseY * 0.01}deg) rotateY(${cardMouseX * 0.01}deg)`,
                 }}
@@ -256,17 +260,19 @@ export function Skills() {
             {technologies.map((tech, index) => (
               <div
                 key={tech.name}
-                className={`group flex flex-col items-center gap-3 p-4 rounded-xl bg-card/30 backdrop-blur-sm border border-primary/10 hover:border-primary/30 hover:bg-card/50 transition-all duration-500 cursor-pointer hover:scale-110 hover:-translate-y-2 magnetic-element ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
+                className={`group flex flex-col items-center gap-3 p-4 rounded-xl bg-card/30 backdrop-blur-sm border border-primary/10 hover:border-primary/30 hover:bg-card/50 transition-all duration-500 cursor-pointer hover:scale-110 hover:-translate-y-2 magnetic-element ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
                 style={{ transitionDelay: `${(index + 6) * 80}ms` }}
               >
                 <div className="relative w-12 h-12 flex items-center justify-center">
                   <img
                     src={tech.icon}
                     alt={tech.name}
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                    loading="lazy"
+                    draggable={false}
+                    className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
                   />
+          
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
                 </div>
                 <span className="text-xs font-medium text-center text-muted-foreground group-hover:text-primary transition-colors duration-300">

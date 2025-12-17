@@ -89,9 +89,13 @@ export function About() {
           {/* Image */}
           <div className={`relative transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hover:scale-105 transition-transform duration-500">
-              <img
-                src="/assets/generated/profile-photo.dim_400x400.jpg"
-                alt="Profile"
+              <video
+                src="/assets/My AI-vedio.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
@@ -119,10 +123,10 @@ export function About() {
 
             <div className={`grid grid-cols-2 gap-4 pt-4 transition-all duration-700 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               {[
-                { label: 'Years Experience', value: '5+' },
-                { label: 'Projects Completed', value: '50+' },
+                { label: 'Years Experience', value: '2+' },
+                { label: 'Projects Completed', value: '3+' },
                 { label: 'Technologies', value: '20+' },
-                { label: 'Happy Clients', value: '30+' },
+                // { label: 'Happy Clients', value: '30+' },
               ].map((stat) => (
                 <div
                   key={stat.label}
