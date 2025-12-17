@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Text3D, Center } from '@react-three/drei';
-import { Code2, Database, Palette, Zap, Globe, Cpu } from 'lucide-react';
+import { Float } from '@react-three/drei';
+import { Code2, Database, Zap, Globe, Cpu } from 'lucide-react';
 import * as THREE from 'three';
 
 
