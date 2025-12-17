@@ -177,7 +177,7 @@ function Particles() {
   }, []);
 
   useEffect(() => {
-    let idleTimer: NodeJS.Timeout;
+    let idleTimer: ReturnType<typeof setTimeout>;
     const resetIdle = () => {
       setIsIdle(false);
       clearTimeout(idleTimer);

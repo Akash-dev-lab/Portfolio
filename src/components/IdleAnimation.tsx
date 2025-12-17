@@ -5,8 +5,8 @@ export function IdleAnimations() {
   const [idleIntensity, setIdleIntensity] = useState(0);
 
   useEffect(() => {
-    let idleTimer: NodeJS.Timeout;
-    let intensityInterval: NodeJS.Timeout;
+    let idleTimer: ReturnType<typeof setTimeout>;
+    let intensityInterval: ReturnType<typeof setInterval>;
 
     const resetIdleTimer = () => {
       setIsIdle(false);

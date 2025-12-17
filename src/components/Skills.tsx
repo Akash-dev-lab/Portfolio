@@ -170,7 +170,7 @@ export function Skills() {
     return () => section?.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const handleIconClick = (index: number) => {
+  const handleIconClick = () => {
     setIconClicks(prev => prev + 1);
   };
 
