@@ -36,8 +36,8 @@ export function CustomCursor() {
       const dx = mousePos.current.x - cursorPos.current.x;
       const dy = mousePos.current.y - cursorPos.current.y;
       
-      cursorPos.current.x += dx * 0.15;
-      cursorPos.current.y += dy * 0.15;
+      cursorPos.current.x += dx * 1;
+      cursorPos.current.y += dy * 1;
 
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate(${cursorPos.current.x}px, ${cursorPos.current.y}px)`;
@@ -48,8 +48,8 @@ export function CustomCursor() {
         const glowDx = mousePos.current.x - parseFloat(cursorGlowRef.current.style.left || '0');
         const glowDy = mousePos.current.y - parseFloat(cursorGlowRef.current.style.top || '0');
         
-        cursorGlowRef.current.style.left = `${parseFloat(cursorGlowRef.current.style.left || '0') + glowDx * 0.08}px`;
-        cursorGlowRef.current.style.top = `${parseFloat(cursorGlowRef.current.style.top || '0') + glowDy * 0.08}px`;
+        cursorGlowRef.current.style.left = `${parseFloat(cursorGlowRef.current.style.left || '0') + glowDx * 0.15}px`;
+        cursorGlowRef.current.style.top = `${parseFloat(cursorGlowRef.current.style.top || '0') + glowDy * 0.15}px`;
       }
 
       animationFrameId = requestAnimationFrame(animate);
