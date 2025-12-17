@@ -7,13 +7,18 @@ import * as THREE from 'three';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.',
+    title: 'AI Chatbot',
+    description: '⚡ 🚀 A scalable AI-Chatbot application with real-time messaging, AI-powered responses, and modern UI. Built with React (Frontend) + Node.js/Express (Backend) + MongoDB & Redis (Pinecone)',
     fullDescription: 'Built with React and Node.js, this platform handles thousands of products with real-time inventory updates. Features include secure payment processing via Stripe, comprehensive admin dashboard with analytics, and responsive design optimized for mobile shopping.',
-    image: '/assets/generated/project-mockup-1.dim_800x600.png',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-    github: '#',
-    demo: '#',
+    image: '/Project_images/Dark_Mode.png',
+    tags: [
+      { label: 'React', icon: '/icons/react.svg' },
+      { label: 'Node.js', icon: '/icons/nodejs.svg' },
+      { label: 'MongoDB', icon: '/icons/mongodb.svg' },
+      { label: 'Postman', icon: '/icons/postman.svg' },
+    ],
+    github: 'https://github.com/Akash-dev-lab/AI-chatbot',
+    demo: 'https://ai-chatbot-qe6a.onrender.com',
     features: ['Real-time inventory', 'Secure payments', 'Admin dashboard', 'Mobile optimized'],
   },
   {
@@ -21,7 +26,12 @@ const projects = [
     description: 'Mobile-first social platform with real-time messaging, media sharing, and advanced privacy controls.',
     fullDescription: 'A React Native application with Firebase backend providing real-time messaging, photo/video sharing, and granular privacy controls. Includes push notifications, story features, and advanced content moderation.',
     image: '/assets/generated/project-mockup-2.dim_400x600.png',
-    tags: ['React Native', 'Firebase', 'Redux'],
+    tags: [
+      { label: 'React', icon: '/icons/react.svg' },
+      { label: 'Node.js', icon: '/icons/nodejs.svg' },
+      { label: 'MongoDB', icon: '/icons/mongodb.svg' },
+      { label: 'Postman', icon: '/icons/postman.svg' },
+    ],
     github: '#',
     demo: '#',
     features: ['Real-time messaging', 'Media sharing', 'Privacy controls', 'Push notifications'],
@@ -31,12 +41,19 @@ const projects = [
     description: 'Data visualization platform with interactive charts, real-time updates, and customizable reporting.',
     fullDescription: 'Next.js powered dashboard with D3.js visualizations, providing real-time data insights. Features customizable widgets, export capabilities, and responsive design for data analysis on any device.',
     image: '/assets/generated/project-mockup-3.dim_800x600.png',
-    tags: ['Next.js', 'TypeScript', 'D3.js', 'Tailwind'],
+    tags: [
+      { label: 'React', icon: '/icons/react.svg' },
+      { label: 'Node.js', icon: '/icons/nodejs.svg' },
+      { label: 'MongoDB', icon: '/icons/mongodb.svg' },
+      { label: 'Postman', icon: '/icons/postman.svg' },
+    ],
     github: '#',
     demo: '#',
     features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
   },
 ];
+
+// console.log('Loaded projects:', projects[0].tags[0].label);
 
 // 3D Project Card with click interaction
 function Project3DCard({ index, isActive, onClick }: { index: number; isActive: boolean; onClick: () => void }) {
@@ -47,7 +64,7 @@ function Project3DCard({ index, isActive, onClick }: { index: number; isActive: 
     if (!meshRef.current) return;
     const targetRotation = isActive ? 0 : Math.sin(state.clock.elapsedTime + index) * 0.2;
     meshRef.current.rotation.y += (targetRotation - meshRef.current.rotation.y) * 0.1;
-    
+
     const targetScale = isActive ? 1.2 : hovered ? 1.1 : 1;
     meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
   });
@@ -83,9 +100,9 @@ function ProjectsScene({ activeProject, onProjectClick }: { activeProject: numbe
       <pointLight position={[10, 10, 10]} intensity={1} />
       <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ff00ff" />
       {projects.map((_, index) => (
-        <Project3DCard 
-          key={index} 
-          index={index} 
+        <Project3DCard
+          key={index}
+          index={index}
           isActive={activeProject === index}
           onClick={() => onProjectClick(index)}
         />
@@ -155,11 +172,11 @@ export function Projects() {
 
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div 
+        <div
           className="absolute top-1/3 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl transition-transform duration-300 idle-pulse"
           style={{ transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)` }}
         />
-        <div 
+        <div
           className="absolute bottom-1/3 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl transition-transform duration-300 idle-pulse"
           style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)` }}
         />
@@ -181,9 +198,8 @@ export function Projects() {
             <div
               key={project.title}
               data-index={index}
-              className={`project-card relative transition-all duration-1000 ${
-                visibleProjects.includes(index) ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-16 scale-95'
-              }`}
+              className={`project-card relative transition-all duration-1000 ${visibleProjects.includes(index) ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-16 scale-95'
+                }`}
             >
               {/* Expanded view overlay */}
               {expandedProject === index && (
@@ -200,7 +216,7 @@ export function Projects() {
                         <X size={24} />
                       </Button>
                     </div>
-                    
+
                     <div className="grid md:grid-cols-2 gap-8">
                       <div>
                         <img
@@ -209,12 +225,12 @@ export function Projects() {
                           className="w-full rounded-lg border border-primary/20 shadow-lg"
                         />
                       </div>
-                      
+
                       <div className="space-y-4">
                         <p className="text-muted-foreground leading-relaxed">
                           {project.fullDescription}
                         </p>
-                        
+
                         <div>
                           <h4 className="font-semibold mb-2">Key Features:</h4>
                           <ul className="space-y-2">
@@ -226,18 +242,7 @@ export function Projects() {
                             ))}
                           </ul>
                         </div>
-                        
-                        <div className="flex flex-wrap gap-2">
-                          {project.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-3 py-1 rounded-full bg-secondary/50 backdrop-blur-sm border border-primary/10 text-sm font-medium"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        
+
                         <div className="flex gap-4 pt-4">
                           <Button variant="outline" className="magnetic-button" asChild>
                             <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -261,7 +266,7 @@ export function Projects() {
               {/* Regular card view */}
               <div className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Image */}
-                <div 
+                <div
                   className={`relative group cursor-pointer ${index % 2 === 1 ? 'md:order-2' : ''}`}
                   onClick={() => handleProjectClick(index)}
                   style={{
@@ -312,21 +317,28 @@ export function Projects() {
                     <p className="text-muted-foreground text-lg leading-relaxed">
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-20">
                       {project.tags.map((tag) => (
                         <span
-                          key={tag}
-                          className="px-3 py-1 rounded-full bg-secondary/50 backdrop-blur-sm border border-primary/10 text-sm font-medium hover:border-primary/30 hover:scale-105 transition-all duration-300 cursor-pointer magnetic-element"
+                          key={tag.label}
+                          className="rounded-full bg-secondary/50 backdrop-blur-sm border border-primary/10 text-sm font-medium hover:border-primary/30 hover:scale-105 transition-all duration-300 cursor-pointer magnetic-element"
                         >
-                          {tag}
+                          <img
+                            src={tag.icon}
+                            alt={tag.label}
+                            className="w-10 object-contain"
+                            loading="lazy"
+                            draggable={false}
+                          />
+                          {/* {tag.label} */}
                         </span>
                       ))}
                     </div>
                     <div className="flex gap-4 pt-4">
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="magnetic-button" 
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="magnetic-button"
                         onClick={() => handleProjectClick(index)}
                       >
                         Explore Project
