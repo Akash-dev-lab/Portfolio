@@ -326,7 +326,7 @@ export function Projects() {
                           <img
                             src={tag.icon}
                             alt={tag.label}
-                            className="w-10 object-contain"
+                            className="w-8 object-contain"
                             loading="lazy"
                             draggable={false}
                           />
