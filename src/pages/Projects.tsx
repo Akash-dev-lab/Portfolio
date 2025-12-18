@@ -13,7 +13,7 @@ const projects = [
     media: {
       type: 'video',
       src: '/Project_videos/ai-chatbot.mp4',
-      poster: '/public/Project_images/coming soon.webp', // optional fallback thumbnail
+      poster: '/Project_images/coming soon.webp', // optional fallback thumbnail
     },
     tags: [
       // { label: 'React', icon: '/icons/react.svg' },
