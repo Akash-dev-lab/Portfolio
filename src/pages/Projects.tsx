@@ -172,27 +172,6 @@ export function Projects() {
       ref={sectionRef}
       className="relative py-24 md:py-32 overflow-hidden"
     >
-      {/* 3D Background */}
-      <div className="absolute inset-0 opacity-20 pointer-events-auto">
-        <Canvas camera={{ position: [0, 0, 8], fov: 75 }} dpr={[1, 2]}>
-          <Suspense fallback={null}>
-            <ProjectsScene activeProject={expandedProject} onProjectClick={handleProjectClick} />
-          </Suspense>
-        </Canvas>
-      </div>
-
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/3 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl transition-transform duration-300 idle-pulse"
-          style={{ transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)` }}
-        />
-        <div
-          className="absolute bottom-1/3 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl transition-transform duration-300 idle-pulse"
-          style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)` }}
-        />
-      </div>
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom duration-700">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -212,60 +191,6 @@ export function Projects() {
               className={`project-card relative transition-all duration-1000 ${visibleProjects.includes(index) ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-16 scale-95'
                 }`}
             >
-              {/* Expanded view overlay */}
-              {/* {expandedProject === index && (
-                <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-300">
-                  <div className="max-w-5xl w-full bg-card border border-primary/20 rounded-2xl p-8 shadow-2xl shadow-primary/20 animate-in zoom-in duration-500">
-                    <div className="flex justify-between items-start mb-6">
-                      <h3 className="text-3xl font-bold">{project.title}</h3>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => setExpandedProject(null)}
-                        className="magnetic-button"
-                      >
-                        <X size={24} />
-                      </Button>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-
-                      <div className="space-y-4">
-                        <p className="text-muted-foreground leading-relaxed">
-                          {project.fullDescription}
-                        </p>
-
-                        <div>
-                          <h4 className="font-semibold mb-2">Key Features:</h4>
-                          <ul className="space-y-2">
-                            {project.features.map((feature) => (
-                              <li key={feature} className="flex items-center gap-2 text-muted-foreground">
-                                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div className="flex gap-4 pt-4">
-                          <Button variant="outline" className="magnetic-button" asChild>
-                            <a href={project.github} target="_blank" rel="noopener noreferrer">
-                              <Github className="w-4 h-4 mr-2" />
-                              View Code
-                            </a>
-                          </Button>
-                          <Button className="bg-gradient-to-r from-primary to-accent magnetic-button glow-primary" asChild>
-                            <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="w-4 h-4 mr-2" />
-                              Live Demo
-                            </a>
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )} */}
 
               {/* Regular card view */}
               <div className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
