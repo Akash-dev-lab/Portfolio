@@ -31,7 +31,7 @@ const projects = [
     fullDescription: 'A React Native application with Firebase backend providing real-time messaging, photo/video sharing, and granular privacy controls. Includes push notifications, story features, and advanced content moderation.',
     media: {
       type: 'video',
-      src: '/public/assets/boat vedio.mp4',
+      src: '/assets/boat vedio.mp4',
       poster: '/Project_images/Boat.png', // optional fallback thumbnail
     },
     tags: [
