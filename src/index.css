@@ -2,6 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===============================
+   RGB BORDER (THEME SAFE)
+   =============================== */
+
+.rgb-border {
+  position: relative;
+  background: transparent !important;
+  border: 3px solid oklch(var(--border));
+  /* border-radius: inherit; */
+  isolation: isolate; /* IMPORTANT: prevents bleed */
+}
+
+.rgb-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px; /* stays on border */
+  border-radius: inherit;
+  padding: 1px; /* border thickness */
+
+   background: conic-gradient(
+    from 0deg,
+    red 0deg 50deg,
+    green 50deg 180deg,
+    blue 180deg 270deg,
+    red 270deg 360deg
+  );
+  background-size: 200% 200%;
+
+  /* Mask so ONLY border is visible */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+  animation: rgb-border-run 2.5s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes rgb-border-run {
+  0% {
+    background-position: 0% 50%;
+  }
+   50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+
+
 @layer base {
     :root {
         --radius: 0.75rem;

@@ -10,7 +10,11 @@ const projects = [
     title: 'AI Chatbot',
     description: '⚡ 🚀 A scalable AI-Chatbot application with real-time messaging, AI-powered responses, and modern UI. Built with React (Frontend) + Node.js/Express (Backend) + MongoDB & Redis (Pinecone)',
     fullDescription: 'Built with React and Node.js, this platform handles thousands of products with real-time inventory updates. Features include secure payment processing via Stripe, comprehensive admin dashboard with analytics, and responsive design optimized for mobile shopping.',
-    image: '/Project_images/Dark_Mode.png',
+    media: {
+    type: 'video',
+    src: '/assets/Chatbot vedio.mp4',
+    poster: '/Project_images/Dark_Mode.png', // optional fallback thumbnail
+  },
     tags: [
       { label: 'React', icon: '/icons/react.svg' },
       { label: 'Node.js', icon: '/icons/nodejs.svg' },
@@ -40,7 +44,11 @@ const projects = [
     title: 'Analytics Dashboard',
     description: 'Data visualization platform with interactive charts, real-time updates, and customizable reporting.',
     fullDescription: 'Next.js powered dashboard with D3.js visualizations, providing real-time data insights. Features customizable widgets, export capabilities, and responsive design for data analysis on any device.',
-    image: '/assets/generated/project-mockup-3.dim_800x600.png',
+      media: {
+    type: 'video',
+    src: '/Project_videos/ai-chatbot.mp4',
+    poster: '/Project_images/Dark_Mode.png', // optional fallback thumbnail
+  },
     tags: [
       { label: 'React', icon: '/icons/react.svg' },
       { label: 'Node.js', icon: '/icons/nodejs.svg' },
@@ -275,11 +283,30 @@ export function Projects() {
                   }}
                 >
                   <div className="relative aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hover:scale-105 transition-transform duration-500 hover:shadow-primary/30 magnetic-element">
-                    <img
+                    {/* <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                    /> */}
+                    {project.media?.type === 'video' ? (
+  <video
+    src={project.media.src}
+    poster={project.media.poster}
+    muted
+    loop
+    playsInline
+    autoPlay
+    preload="metadata"
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+  />
+) : (
+  <img
+    src={project.media?.src}
+    alt={project.title}
+    className="w-full h-full object-cover"
+  />
+)}
+
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8 gap-4">
                       <Button
                         size="sm"
@@ -294,11 +321,11 @@ export function Projects() {
                       </Button>
                       <Button
                         size="sm"
-                        className="bg-gradient-to-r from-primary to-accent magnetic-button glow-primary"
+                        className="rgb-border magnetic-button"
                         asChild
                       >
                         <a href={project.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                          <ExternalLink className="w-4 h-4 mr-2" />
+                          <ExternalLink className="w-4 h-4 mr-2 " />
                           Demo
                         </a>
                       </Button>
@@ -338,16 +365,10 @@ export function Projects() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="magnetic-button"
+                        className="magnetic-button rgb-border"
                         onClick={() => handleProjectClick(index)}
                       >
                         Explore Project
-                      </Button>
-                      <Button size="sm" className="bg-gradient-to-r from-primary to-accent magnetic-button glow-primary" asChild>
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Live Demo
-                        </a>
                       </Button>
                     </div>
                   </div>
