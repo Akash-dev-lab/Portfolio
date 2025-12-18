@@ -217,7 +217,7 @@ function Scene() {
 
   return (
     <>
-      <TechGrid />
+      {/* <TechGrid /> */}
       <Particles />
     </>
   );
