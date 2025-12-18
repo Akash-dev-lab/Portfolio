@@ -1,11 +1,30 @@
 import { useEffect, useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, RoundedBox } from '@react-three/drei';
-import { ExternalLink, Github, X } from 'lucide-react';
+import { ExternalLink, Github, } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import * as THREE from 'three';
 
 const projects = [
+  {
+    title: 'NOVA - Online Market Place',
+    description: 'Updated Soon...',
+    fullDescription: 'Next.js powered dashboard with D3.js visualizations, providing real-time data insights. Features customizable widgets, export capabilities, and responsive design for data analysis on any device.',
+    media: {
+      type: 'video',
+      src: '/Project_videos/ai-chatbot.mp4',
+      poster: '/public/Project_images/coming soon.webp', // optional fallback thumbnail
+    },
+    tags: [
+      // { label: 'React', icon: '/icons/react.svg' },
+      // { label: 'Node.js', icon: '/icons/nodejs.svg' },
+      // { label: 'MongoDB', icon: '/icons/mongodb.svg' },
+      // { label: 'Postman', icon: '/icons/postman.svg' },
+    ],
+    github: '#',
+    demo: '#',
+    features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
+  },
   {
     title: 'AI Chatbot',
     description: '⚡ 🚀 A scalable AI-Chatbot application with real-time messaging, AI-powered responses, and modern UI. Built with React (Frontend) + Node.js/Express (Backend) + MongoDB & Redis (Pinecone)',
@@ -27,7 +46,7 @@ const projects = [
   },
   {
     title: 'Boat Re-Design',
-    description: 'Mobile-first social platform with real-time messaging, media sharing, and advanced privacy controls.',
+    description: "A visually enhanced, responsive boAt-inspired eCommerce website. ⚡️ Smooth animations. 🔄 Seamless scrolling. 📱 Fully responsive. Designed to reflect the premium, youth-focused energy of boAt's brand. built using the modern frontend stack:",
     fullDescription: 'A React Native application with Firebase backend providing real-time messaging, photo/video sharing, and granular privacy controls. Includes push notifications, story features, and advanced content moderation.',
     media: {
       type: 'video',
@@ -36,32 +55,12 @@ const projects = [
     },
     tags: [
       { label: 'React', icon: '/icons/react.svg' },
-      { label: 'Node.js', icon: '/icons/nodejs.svg' },
-      { label: 'MongoDB', icon: '/icons/mongodb.svg' },
-      { label: 'Postman', icon: '/icons/postman.svg' },
+      { label: 'Tailwind', icon: '/icons/tailwind.svg' },
+      { label: 'Framer', icon: '/icons/framer.svg' },
     ],
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/Akash-dev-lab/boat-web-redevelopment',
+    demo: 'https://boat-web-redevelopment.vercel.app/',
     features: ['Real-time messaging', 'Media sharing', 'Privacy controls', 'Push notifications'],
-  },
-  {
-    title: 'Analytics Dashboard',
-    description: 'Data visualization platform with interactive charts, real-time updates, and customizable reporting.',
-    fullDescription: 'Next.js powered dashboard with D3.js visualizations, providing real-time data insights. Features customizable widgets, export capabilities, and responsive design for data analysis on any device.',
-    media: {
-      type: 'video',
-      src: '/Project_videos/ai-chatbot.mp4',
-      poster: '/Project_images/Dark_Mode.png', // optional fallback thumbnail
-    },
-    tags: [
-      { label: 'React', icon: '/icons/react.svg' },
-      { label: 'Node.js', icon: '/icons/nodejs.svg' },
-      { label: 'MongoDB', icon: '/icons/mongodb.svg' },
-      { label: 'Postman', icon: '/icons/postman.svg' },
-    ],
-    github: '#',
-    demo: '#',
-    features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
   },
 ];
 
@@ -214,7 +213,7 @@ export function Projects() {
                 }`}
             >
               {/* Expanded view overlay */}
-              {expandedProject === index && (
+              {/* {expandedProject === index && (
                 <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-300">
                   <div className="max-w-5xl w-full bg-card border border-primary/20 rounded-2xl p-8 shadow-2xl shadow-primary/20 animate-in zoom-in duration-500">
                     <div className="flex justify-between items-start mb-6">
@@ -230,13 +229,6 @@ export function Projects() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
-                      {/* <div>
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full rounded-lg border border-primary/20 shadow-lg"
-                        />
-                      </div> */}
 
                       <div className="space-y-4">
                         <p className="text-muted-foreground leading-relaxed">
@@ -273,7 +265,7 @@ export function Projects() {
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
 
               {/* Regular card view */}
               <div className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
@@ -361,14 +353,9 @@ export function Projects() {
                       ))}
                     </div>
                     <div className="flex gap-4 pt-4">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="magnetic-button rgb-border"
-                        onClick={() => handleProjectClick(index)}
-                      >
-                        Explore Project
-                      </Button>
+                      <p className=" rgb-border px-4 py-2 rounded-full text-sm text-muted-foreground">
+                        Consider Readme.md File to know more...
+                      </p>
                     </div>
                   </div>
                 </div>

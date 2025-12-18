@@ -32,7 +32,6 @@ function App() {
 
     // Initialize Lenis smooth scroll if available
     const initLenis = async () => {
-      // @ts-ignore - Lenis loaded via CDN
       const Lenis = (window as any).Lenis;
       if (!Lenis) {
         console.log('Lenis not available, using native scroll');
