@@ -230,13 +230,13 @@ export function Projects() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
-                      <div>
+                      {/* <div>
                         <img
                           src={project.image}
                           alt={project.title}
                           className="w-full rounded-lg border border-primary/20 shadow-lg"
                         />
-                      </div>
+                      </div> */}
 
                       <div className="space-y-4">
                         <p className="text-muted-foreground leading-relaxed">
