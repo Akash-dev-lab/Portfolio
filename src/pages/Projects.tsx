@@ -11,10 +11,10 @@ const projects = [
     description: '⚡ 🚀 A scalable AI-Chatbot application with real-time messaging, AI-powered responses, and modern UI. Built with React (Frontend) + Node.js/Express (Backend) + MongoDB & Redis (Pinecone)',
     fullDescription: 'Built with React and Node.js, this platform handles thousands of products with real-time inventory updates. Features include secure payment processing via Stripe, comprehensive admin dashboard with analytics, and responsive design optimized for mobile shopping.',
     media: {
-    type: 'video',
-    src: '/assets/Chatbot vedio.mp4',
-    poster: '/Project_images/Dark_Mode.png', // optional fallback thumbnail
-  },
+      type: 'video',
+      src: '/assets/Chatbot vedio.mp4',
+      poster: '/Project_images/Dark_Mode.png', // optional fallback thumbnail
+    },
     tags: [
       { label: 'React', icon: '/icons/react.svg' },
       { label: 'Node.js', icon: '/icons/nodejs.svg' },
@@ -26,10 +26,14 @@ const projects = [
     features: ['Real-time inventory', 'Secure payments', 'Admin dashboard', 'Mobile optimized'],
   },
   {
-    title: 'Social Media App',
+    title: 'Boat Re-Design',
     description: 'Mobile-first social platform with real-time messaging, media sharing, and advanced privacy controls.',
     fullDescription: 'A React Native application with Firebase backend providing real-time messaging, photo/video sharing, and granular privacy controls. Includes push notifications, story features, and advanced content moderation.',
-    image: '/assets/generated/project-mockup-2.dim_400x600.png',
+    media: {
+      type: 'video',
+      src: '/public/assets/boat vedio.mp4',
+      poster: '/Project_images/Boat.png', // optional fallback thumbnail
+    },
     tags: [
       { label: 'React', icon: '/icons/react.svg' },
       { label: 'Node.js', icon: '/icons/nodejs.svg' },
@@ -44,11 +48,11 @@ const projects = [
     title: 'Analytics Dashboard',
     description: 'Data visualization platform with interactive charts, real-time updates, and customizable reporting.',
     fullDescription: 'Next.js powered dashboard with D3.js visualizations, providing real-time data insights. Features customizable widgets, export capabilities, and responsive design for data analysis on any device.',
-      media: {
-    type: 'video',
-    src: '/Project_videos/ai-chatbot.mp4',
-    poster: '/Project_images/Dark_Mode.png', // optional fallback thumbnail
-  },
+    media: {
+      type: 'video',
+      src: '/Project_videos/ai-chatbot.mp4',
+      poster: '/Project_images/Dark_Mode.png', // optional fallback thumbnail
+    },
     tags: [
       { label: 'React', icon: '/icons/react.svg' },
       { label: 'Node.js', icon: '/icons/nodejs.svg' },
@@ -283,29 +287,24 @@ export function Projects() {
                   }}
                 >
                   <div className="relative aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hover:scale-105 transition-transform duration-500 hover:shadow-primary/30 magnetic-element">
-                    {/* <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    /> */}
                     {project.media?.type === 'video' ? (
-  <video
-    src={project.media.src}
-    poster={project.media.poster}
-    muted
-    loop
-    playsInline
-    autoPlay
-    preload="metadata"
-    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-  />
-) : (
-  <img
-    src={project.media?.src}
-    alt={project.title}
-    className="w-full h-full object-cover"
-  />
-)}
+                      <video
+                        src={project.media.src}
+                        poster={project.media.poster}
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
+                        preload="metadata"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    ) : (
+                      <img
+                        src={project.media?.src}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
 
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8 gap-4">
                       <Button
