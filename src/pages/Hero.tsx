@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Float, MeshDistortMaterial } from '@react-three/drei';
 import { ChevronDown } from 'lucide-react';
 import * as THREE from 'three';
+import { ResumeModal } from '../components/ResumeModal'
 
 // 3D Web3 geometry with click interaction
 function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
@@ -13,15 +14,15 @@ function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
 
   useFrame((state) => {
     if (!meshRef.current || !groupRef.current) return;
-    
+
     const targetRotationX = isClicked ? state.clock.elapsedTime * 0.5 : state.clock.elapsedTime * 0.2;
     const targetRotationY = isClicked ? state.clock.elapsedTime * 0.7 : state.clock.elapsedTime * 0.3;
-    
+
     meshRef.current.rotation.x += (targetRotationX - meshRef.current.rotation.x) * 0.1;
     meshRef.current.rotation.y += (targetRotationY - meshRef.current.rotation.y) * 0.1;
-    
+
     groupRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
-    
+
     // Scale animation on click
     const targetScale = isClicked ? 1.3 : hovered ? 1.1 : 1;
     meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
@@ -36,7 +37,7 @@ function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
   return (
     <group ref={groupRef}>
       <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-        <mesh 
+        <mesh
           ref={meshRef}
           onClick={handleClick}
           onPointerOver={() => setHovered(true)}
@@ -60,24 +61,24 @@ function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
       {[0, 1, 2].map((i) => (
         <mesh key={i} rotation={[Math.PI / 2, 0, (i * Math.PI) / 3]}>
           <torusGeometry args={[2 + i * 0.3, 0.02, 16, 100]} />
-          <meshBasicMaterial 
-            color={isClicked ? "#00ffff" : "#ff00ff"} 
-            transparent 
-            opacity={isClicked ? 0.6 : 0.3} 
+          <meshBasicMaterial
+            color={isClicked ? "#00ffff" : "#ff00ff"}
+            transparent
+            opacity={isClicked ? 0.6 : 0.3}
           />
         </mesh>
       ))}
 
       {/* Point lights for glow */}
-      <pointLight 
-        position={[2, 2, 2]} 
-        intensity={isClicked ? 2 : 1} 
-        color="#00ffff" 
+      <pointLight
+        position={[2, 2, 2]}
+        intensity={isClicked ? 2 : 1}
+        color="#00ffff"
       />
-      <pointLight 
-        position={[-2, -2, -2]} 
-        intensity={isClicked ? 2 : 1} 
-        color="#ff00ff" 
+      <pointLight
+        position={[-2, -2, -2]}
+        intensity={isClicked ? 2 : 1}
+        color="#ff00ff"
       />
     </group>
   );
@@ -85,6 +86,8 @@ function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
 
 export function Hero() {
   const [interactionCount, setInteractionCount] = useState(0);
+  const [showResumeModal, setShowResumeModal] = useState(false);
+
 
   const scrollToAbout = () => {
     const aboutSection = document.querySelector('#about');
@@ -150,15 +153,10 @@ export function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom duration-700 delay-800">
             <button
-              onClick={() => {
-                const projectsSection = document.querySelector('#projects');
-                if (projectsSection) {
-                  projectsSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="magnetic-button px-8 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-105 active:scale-95 glow-primary"
+              onClick={() => setShowResumeModal(true)}
+              className="magnetic-button rgb-border px-8 py-4 bg-secondary/50 backdrop-blur-sm text-foreground rounded-lg font-semibold border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 active:scale-95"
             >
-              View My Work
+              Download Resume
             </button>
             <button
               onClick={() => {
@@ -184,6 +182,12 @@ export function Hero() {
           <ChevronDown size={32} />
         </div>
       </button>
+
+      <ResumeModal
+        open={showResumeModal}
+        onClose={() => setShowResumeModal(false)}
+      />
+
     </section>
   );
 }

@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes floatVertical {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-float-vertical {
+  animation: floatVertical 4s ease-in-out infinite;
+}
+
+
 /* ===============================
    RGB BORDER (THEME SAFE)
    =============================== */
