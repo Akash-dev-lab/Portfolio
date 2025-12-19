@@ -99,7 +99,7 @@ export function Experience() {
 
                 {/* Content */}
                 <div className={index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:col-start-2 md:pl-12'}>
-                  <div className="p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-300 shadow-lg hover:scale-105">
+                  <div className="p-6 rounded-2xl text-left bg-card/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-300 shadow-lg hover:scale-105">
                     <div className="flex items-center gap-2 text-primary mb-2">
                       <Calendar className="w-4 h-4" />
                       <span className="text-sm font-medium">{exp.period}</span>
