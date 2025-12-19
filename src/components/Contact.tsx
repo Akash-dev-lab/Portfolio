@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { SiGithub, SiLinkedin, SiX } from 'react-icons/si';
+import { SiGithub, SiLinkedin, SiX, SiWhatsapp } from 'react-icons/si';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
@@ -30,27 +30,29 @@ export function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'hello@example.com',
-      href: 'mailto:hello@example.com',
+      value: 'gaurakash014@gmail.com',
+      href: 'mailto:gaurakash014@gmail.com',
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      value: '+91-8923101766',
+      href: 'tel:+918923101766',
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
-      href: '#',
+      value: 'Ghaziabad, India',
+      href: 'https://maps.app.goo.gl/N5nJz41K92ZCjeJm6',
     },
   ];
 
   const socialLinks = [
-    { icon: SiGithub, label: 'GitHub', href: 'https://github.com' },
-    { icon: SiLinkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-    { icon: SiX, label: 'X (Twitter)', href: 'https://x.com' },
+    { icon: SiGithub, label: 'GitHub', href: 'https://github.com/Akash-dev-lab' },
+    { icon: SiLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/akash-god-382aa71a9/' },
+    { icon: SiX, label: 'X (Twitter)', href: 'https://x.com/home' },
+    { icon: SiWhatsapp, label: 'Whatsapp', href: 'https://wa.me/918923101766' },
+
   ];
 
   return (
@@ -123,14 +125,14 @@ export function Contact() {
             </div>
 
             {/* Decorative element */}
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hidden lg:block">
+            {/* <div className="relative aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hidden lg:block">
               <img
-                src="/assets/generated/section-divider.dim_1200x200.png"
+                src="/public/Project_images/coming soon.webp"
                 alt="Decorative"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
-            </div>
+            </div> */}
           </div>
 
           {/* Contact Form */}

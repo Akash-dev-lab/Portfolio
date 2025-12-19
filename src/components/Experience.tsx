@@ -3,26 +3,11 @@ import { Briefcase, Calendar } from 'lucide-react';
 
 const experiences = [
   {
-    title: 'Senior Full Stack Developer',
-    company: 'Tech Innovations Inc.',
-    period: '2022 - Present',
-    description: 'Leading development of enterprise-scale applications using React, Node.js, and cloud technologies. Mentoring junior developers and architecting scalable solutions.',
-    achievements: [
-      'Reduced application load time by 60%',
-      'Led team of 5 developers',
-      'Implemented CI/CD pipeline',
-    ],
-  },
-  {
     title: 'Full Stack Developer',
-    company: 'Digital Solutions Ltd.',
-    period: '2020 - 2022',
-    description: 'Developed and maintained multiple client projects using modern web technologies. Collaborated with designers and product managers to deliver high-quality solutions.',
-    achievements: [
-      'Built 15+ production applications',
-      'Improved code quality by 40%',
-      'Introduced automated testing',
-    ],
+    company: 'Sheryians Coding School',
+    period: '2025 - Jan - Nov',
+    description: '"A high-performance redesign of the boAt website developed during a competitive hackathon at Sheryians Coding School. This project showcases advanced frontend capabilities, blending GSAP and Framer Motion for cinematic animations with Lenis for smooth-scroll physics, all wrapped in a sleek, Tailwind-powered modern interface."',
+    achievements: [],
   },
   {
     title: 'Frontend Developer',
