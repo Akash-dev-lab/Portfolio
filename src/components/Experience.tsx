@@ -26,14 +26,10 @@ const experiences = [
   },
   {
     title: 'Frontend Developer',
-    company: 'Creative Agency Co.',
-    period: '2018 - 2020',
+    company: 'Zidio Pvt Ltd',
+    period: '2024 - 3 Months',
     description: 'Created responsive and interactive user interfaces for various clients. Focused on performance optimization and accessibility.',
-    achievements: [
-      'Delivered 20+ client projects',
-      'Achieved 95+ Lighthouse scores',
-      'Implemented design system',
-    ],
+    achievements: [], // Achievements removed as requested
   },
 ];
 
@@ -120,20 +116,23 @@ export function Experience() {
                       {exp.description}
                     </p>
 
-                    <div className="space-y-2">
-                      <p className="text-sm font-semibold text-primary">Key Achievements:</p>
-                      <ul className="space-y-1">
-                        {exp.achievements.map((achievement) => (
-                          <li
-                            key={achievement}
-                            className="text-sm text-muted-foreground flex items-start gap-2"
-                          >
-                            <span className="text-primary mt-1">•</span>
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {/* Only render achievements section if there are items */}
+                    {exp.achievements.length > 0 && (
+                      <div className="space-y-2">
+                        <p className="text-sm font-semibold text-primary">Key Achievements:</p>
+                        <ul className="space-y-1">
+                          {exp.achievements.map((achievement) => (
+                            <li
+                              key={achievement}
+                              className="text-sm text-muted-foreground flex items-start gap-2"
+                            >
+                              <span className="text-primary mt-1">•</span>
+                              <span>{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
 
