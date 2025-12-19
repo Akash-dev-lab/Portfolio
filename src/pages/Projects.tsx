@@ -1,9 +1,6 @@
-import { useEffect, useRef, useState, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, RoundedBox } from '@react-three/drei';
+import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Github, } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import * as THREE from 'three';
 
 const projects = [
   {
@@ -67,60 +64,60 @@ const projects = [
 // console.log('Loaded projects:', projects[0].tags[0].label);
 
 // 3D Project Card with click interaction
-function Project3DCard({ index, isActive, onClick }: { index: number; isActive: boolean; onClick: () => void }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [hovered, setHovered] = useState(false);
+// function Project3DCard({ index, isActive, onClick }: { index: number; isActive: boolean; onClick: () => void }) {
+//   const meshRef = useRef<THREE.Mesh>(null);
+//   const [hovered, setHovered] = useState(false);
 
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    const targetRotation = isActive ? 0 : Math.sin(state.clock.elapsedTime + index) * 0.2;
-    meshRef.current.rotation.y += (targetRotation - meshRef.current.rotation.y) * 0.1;
+//   useFrame((state) => {
+//     if (!meshRef.current) return;
+//     const targetRotation = isActive ? 0 : Math.sin(state.clock.elapsedTime + index) * 0.2;
+//     meshRef.current.rotation.y += (targetRotation - meshRef.current.rotation.y) * 0.1;
 
-    const targetScale = isActive ? 1.2 : hovered ? 1.1 : 1;
-    meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
-  });
+//     const targetScale = isActive ? 1.2 : hovered ? 1.1 : 1;
+//     meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+//   });
 
-  return (
-    <Float speed={2} rotationIntensity={0.3} floatIntensity={0.5}>
-      <RoundedBox
-        ref={meshRef}
-        args={[1.5, 2, 0.1]}
-        radius={0.05}
-        position={[(index - 1) * 2.5, 0, 0]}
-        onClick={onClick}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-      >
-        <meshStandardMaterial
-          color={isActive ? "#00ffff" : hovered ? "#0099ff" : "#0088ff"}
-          emissive={isActive ? "#00ffff" : "#0044ff"}
-          emissiveIntensity={isActive ? 0.8 : 0.3}
-          metalness={0.8}
-          roughness={0.2}
-        />
-      </RoundedBox>
-    </Float>
-  );
-}
+//   return (
+//     <Float speed={2} rotationIntensity={0.3} floatIntensity={0.5}>
+//       <RoundedBox
+//         ref={meshRef}
+//         args={[1.5, 2, 0.1]}
+//         radius={0.05}
+//         position={[(index - 1) * 2.5, 0, 0]}
+//         onClick={onClick}
+//         onPointerOver={() => setHovered(true)}
+//         onPointerOut={() => setHovered(false)}
+//       >
+//         <meshStandardMaterial
+//           color={isActive ? "#00ffff" : hovered ? "#0099ff" : "#0088ff"}
+//           emissive={isActive ? "#00ffff" : "#0044ff"}
+//           emissiveIntensity={isActive ? 0.8 : 0.3}
+//           metalness={0.8}
+//           roughness={0.2}
+//         />
+//       </RoundedBox>
+//     </Float>
+//   );
+// }
 
 // 3D Scene
-function ProjectsScene({ activeProject, onProjectClick }: { activeProject: number | null; onProjectClick: (index: number) => void }) {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ff00ff" />
-      {projects.map((_, index) => (
-        <Project3DCard
-          key={index}
-          index={index}
-          isActive={activeProject === index}
-          onClick={() => onProjectClick(index)}
-        />
-      ))}
-    </>
-  );
-}
+// function ProjectsScene({ activeProject, onProjectClick }: { activeProject: number | null; onProjectClick: (index: number) => void }) {
+//   return (
+//     <>
+//       <ambientLight intensity={0.5} />
+//       <pointLight position={[10, 10, 10]} intensity={1} />
+//       <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ff00ff" />
+//       {projects.map((_, index) => (
+//         <Project3DCard
+//           key={index}
+//           index={index}
+//           isActive={activeProject === index}
+//           onClick={() => onProjectClick(index)}
+//         />
+//       ))}
+//     </>
+//   );
+// }
 
 export function Projects() {
   const sectionRef = useRef<HTMLElement>(null);

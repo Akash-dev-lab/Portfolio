@@ -40,7 +40,7 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
               'Dark / Light Theme',
               'Image upload + preview',
             ]}
-            resume="/resume/Akash_Gaur_Frontend.pdf"
+            resume="/resume/Frontend Resume.pdf"
           />
 
           <FloatingCard
@@ -53,7 +53,7 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
               'JWT Authentication',
               'Gemini-2.5 AI',
             ]}
-            resume="/resume/Akash_Gaur_Backend.pdf"
+            resume="/resume/Backend Resume.pdf"
           />
         </div>
 
