@@ -29,7 +29,7 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
         </button>
 
         {/* Grid Cards */}
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           <FloatingCard
             title="Frontend"
             items={[
@@ -90,14 +90,14 @@ function FloatingCard({
   return (
     <div
       className="relative rounded-2xl border border-border p-8
-                 bg-card text-card-foreground shadow-sm
+                 bg-card text-card-foreground flex flex-col items-center shadow-sm rgb-border
                  animate-float-vertical"
     >
-      <h3 className="text-2xl font-bold text-primary mb-6 text-center">
+      <h3 className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient text-2xl font-bold mb-6 text-center">
         {title}
       </h3>
 
-      <ul className="space-y-3">
+      <ul className="space-y-2">
         {items.map((item, i) => (
           <li key={item} className="flex items-center gap-3 text-sm md:text-base">
             <span
