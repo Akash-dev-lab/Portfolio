@@ -10,16 +10,16 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
       onClick={onClose}
     >
-      {/* Wrapper */}
+      {/* Main Wrapper */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-5xl mx-4 rounded-3xl border border-primary/30
-                   bg-black backdrop-blur-xl p-8 md:p-10"
+        className="relative w-full max-w-5xl mx-4 rounded-3xl border border-border
+                   bg-background text-foreground shadow-2xl p-8 md:p-10 transition-colors duration-300"
       >
-        {/* Close */}
+        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-muted-foreground hover:text-primary transition"
@@ -28,9 +28,8 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
           <X size={24} />
         </button>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Frontend Card */}
+        {/* Grid Cards */}
+        <div className="grid md:grid-cols-2 gap-10">
           <FloatingCard
             title="Frontend"
             items={[
@@ -44,7 +43,6 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
             resume="/resume/Akash_Gaur_Frontend.pdf"
           />
 
-          {/* Backend Card */}
           <FloatingCard
             title="Backend"
             items={[
@@ -60,14 +58,18 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
         </div>
 
         {/* Tagline */}
-        <div className="mt-10 text-center text-lg md:text-xl font-medium text-white">
+        <div className="mt-12 text-center text-lg md:text-xl font-medium text-foreground">
           Grab me as a{' '}
-          <span className="relative inline-block px-1">
+          <span className="relative inline-block px-2">
+            {/* Highlight Background */}
             <span
-              className="absolute inset-0 -z-10 bg-yellow-400/80 rounded-sm
-                         rotate-[-2deg]"
+              className="absolute inset-0 bg-yellow-400 rounded-sm rotate-[-2deg]"
+              aria-hidden="true"
             />
-            <span className="text-black font-bold">Full-Stack</span>
+            {/* Text forced to show above the yellow */}
+            <span className="relative z-10 text-black font-bold">
+              Full-Stack
+            </span>
           </span>{' '}
           Engineer too.
         </div>
@@ -75,10 +77,6 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
     </div>
   );
 }
-
-/* ---------------------------------- */
-/* Floating Card Component             */
-/* ---------------------------------- */
 
 function FloatingCard({
   title,
@@ -91,22 +89,22 @@ function FloatingCard({
 }) {
   return (
     <div
-      className="relative rounded-2xl border border-primary/30 p-6
-                 bg-background/70 backdrop-blur-md
+      className="relative rounded-2xl border border-border p-8
+                 bg-card text-card-foreground shadow-sm
                  animate-float-vertical"
     >
-      <h3 className="text-2xl font-bold text-primary mb-4 text-center">
+      <h3 className="text-2xl font-bold text-primary mb-6 text-center">
         {title}
       </h3>
 
-      <ul className="space-y-2 text-muted-foreground text-sm">
-        {items.map((item,i) => (
-          <li key={item} className="flex justify-center items-start gap-3">
+      <ul className="space-y-3">
+        {items.map((item, i) => (
+          <li key={item} className="flex items-center gap-3 text-sm md:text-base">
             <span
-              className="mt-1 h-2 w-2 rounded-full rgb-dot"
+              className="h-2 w-2 rounded-full rgb-dot shrink-0"
               style={{ animationDelay: `${i * 0.4}s` }}
             />
-            <span>{item}</span>
+            <span className="text-muted-foreground">{item}</span>
           </li>
         ))}
       </ul>
@@ -115,11 +113,11 @@ function FloatingCard({
       <a
         href={resume}
         download
-        className="group absolute -bottom-5 left-1/2 -translate-x-1/2
+        className="group absolute -bottom-6 left-1/2 -translate-x-1/2
                    h-12 w-12 rounded-full border border-primary/40
                    bg-background flex items-center justify-center
-                   transition-all duration-300
-                   hover:scale-110 hover:border-primary"
+                   transition-all duration-300 shadow-lg
+                   hover:scale-110 hover:border-primary hover:bg-primary/5"
         aria-label={`Download ${title} Resume`}
       >
         <Download
