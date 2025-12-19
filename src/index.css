@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* RGB blinking + micro movement dot */
+.rgb-dot {
+  background: red;
+  animation:
+    rgbBlink 3s infinite linear,
+    dotFloat 2.5s infinite ease-in-out;
+}
+
+/* Color cycling (NO blending) */
+@keyframes rgbBlink {
+  0%   { background: rgb(255, 60, 60); }
+  33%  { background: rgb(60, 255, 120); }
+  66%  { background: rgb(80, 160, 255); }
+  100% { background: rgb(255, 60, 60); }
+}
+
+/* Subtle random-like movement */
+@keyframes dotFloat {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(1px, -1px); }
+  50%  { transform: translate(-1px, 1px); }
+  75%  { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+
 @keyframes floatVertical {
   0% {
     transform: translateY(0);

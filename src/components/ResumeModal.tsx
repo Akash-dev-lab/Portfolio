@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import { X, Download } from 'lucide-react';
 
 interface ResumeModalProps {
   open: boolean;
@@ -13,69 +13,120 @@ export function ResumeModal({ open, onClose }: ResumeModalProps) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
       onClick={onClose}
     >
-      {/* Floating Card */}
+      {/* Wrapper */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-2xl mx-4 rounded-2xl border border-primary/30 bg-background/90 backdrop-blur-xl p-8 animate-float-vertical"
+        className="relative w-full max-w-5xl mx-4 rounded-3xl border border-primary/30
+                   bg-black backdrop-blur-xl p-8 md:p-10"
       >
-        {/* Close Button */}
+        {/* Close */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-muted-foreground hover:text-primary transition"
-          aria-label="Close resume modal"
+          aria-label="Close"
         >
-          <X size={22} />
+          <X size={24} />
         </button>
 
-        {/* Title */}
-        <h3 className="text-2xl font-bold mb-6 text-center">
-          Resume Overview
-        </h3>
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Frontend Card */}
+          <FloatingCard
+            title="Frontend"
+            items={[
+              'React + Vite',
+              'Redux Toolkit',
+              'Framer Motion',
+              'TailwindCSS',
+              'Dark / Light Theme',
+              'Image upload + preview',
+            ]}
+            resume="/resume/Akash_Gaur_Frontend.pdf"
+          />
 
-        {/* Content */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Frontend */}
-          <div className="rounded-xl border border-primary/20 p-4">
-            <h4 className="text-lg font-semibold mb-2 text-primary">
-              Frontend
-            </h4>
-            <ul className="text-sm text-muted-foreground space-y-1">
-              <li>React + Vite</li>
-              <li>Redux Toolkit</li>
-              <li>Framer Motion</li>
-              <li>TailwindCSS</li>
-              <li>Dark / Light Theme</li>
-              <li>Image upload + preview</li>
-            </ul>
-          </div>
-
-          {/* Backend */}
-          <div className="rounded-xl border border-primary/20 p-4">
-            <h4 className="text-lg font-semibold mb-2 text-primary">
-              Backend
-            </h4>
-            <ul className="text-sm text-muted-foreground space-y-1">
-              <li>Node.js + Express</li>
-              <li>Socket.IO (Realtime)</li>
-              <li>MongoDB</li>
-              <li>Redis / Pinecone</li>
-              <li>JWT Auth</li>
-              <li>Gemini-2.5 AI</li>
-            </ul>
-          </div>
+          {/* Backend Card */}
+          <FloatingCard
+            title="Backend"
+            items={[
+              'Node.js + Express',
+              'Socket.IO (Realtime)',
+              'MongoDB',
+              'Redis / Pinecone',
+              'JWT Authentication',
+              'Gemini-2.5 AI',
+            ]}
+            resume="/resume/Akash_Gaur_Backend.pdf"
+          />
         </div>
 
-        {/* Download */}
-        <div className="flex justify-center mt-8">
-          <a
-            href="/resume/Akash_Gaur_Resume.pdf"
-            download
-            className="rgb-border px-6 py-3 rounded-lg font-semibold magnetic-button"
-          >
-            Download Resume
-          </a>
+        {/* Tagline */}
+        <div className="mt-10 text-center text-lg md:text-xl font-medium text-white">
+          Grab me as a{' '}
+          <span className="relative inline-block px-1">
+            <span
+              className="absolute inset-0 -z-10 bg-yellow-400/80 rounded-sm
+                         rotate-[-2deg]"
+            />
+            <span className="text-black font-bold">Full-Stack</span>
+          </span>{' '}
+          Engineer too.
         </div>
       </div>
+    </div>
+  );
+}
+
+/* ---------------------------------- */
+/* Floating Card Component             */
+/* ---------------------------------- */
+
+function FloatingCard({
+  title,
+  items,
+  resume,
+}: {
+  title: string;
+  items: string[];
+  resume: string;
+}) {
+  return (
+    <div
+      className="relative rounded-2xl border border-primary/30 p-6
+                 bg-background/70 backdrop-blur-md
+                 animate-float-vertical"
+    >
+      <h3 className="text-2xl font-bold text-primary mb-4 text-center">
+        {title}
+      </h3>
+
+      <ul className="space-y-2 text-muted-foreground text-sm">
+        {items.map((item,i) => (
+          <li key={item} className="flex justify-center items-start gap-3">
+            <span
+              className="mt-1 h-2 w-2 rounded-full rgb-dot"
+              style={{ animationDelay: `${i * 0.4}s` }}
+            />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Download Button */}
+      <a
+        href={resume}
+        download
+        className="group absolute -bottom-5 left-1/2 -translate-x-1/2
+                   h-12 w-12 rounded-full border border-primary/40
+                   bg-background flex items-center justify-center
+                   transition-all duration-300
+                   hover:scale-110 hover:border-primary"
+        aria-label={`Download ${title} Resume`}
+      >
+        <Download
+          size={20}
+          className="text-primary group-hover:rotate-[-8deg] transition"
+        />
+      </a>
     </div>
   );
 }
