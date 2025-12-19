@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { SiGithub, SiLinkedin, SiX, SiWhatsapp } from 'react-icons/si';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
@@ -45,14 +44,6 @@ export function Contact() {
       value: 'Ghaziabad, India',
       href: 'https://maps.app.goo.gl/N5nJz41K92ZCjeJm6',
     },
-  ];
-
-  const socialLinks = [
-    { icon: SiGithub, label: 'GitHub', href: 'https://github.com/Akash-dev-lab' },
-    { icon: SiLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/akash-god-382aa71a9/' },
-    { icon: SiX, label: 'X (Twitter)', href: 'https://x.com/home' },
-    { icon: SiWhatsapp, label: 'Whatsapp', href: 'https://wa.me/918923101766' },
-
   ];
 
   return (
@@ -104,7 +95,7 @@ export function Contact() {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <h3 className="text-2xl font-bold mb-6">Follow Me</h3>
               <div className="flex gap-4">
                 {socialLinks.map((social) => {
@@ -122,7 +113,7 @@ export function Contact() {
                   );
                 })}
               </div>
-            </div>
+            </div> */}
 
             {/* Decorative element */}
             {/* <div className="relative aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hidden lg:block">
