@@ -40,10 +40,11 @@ export const LazyVideo: React.FC<LazyVideoProps> = ({ webm, mp4, poster, alt, cl
       {isInView ? (
         <video
           poster={poster}
-          preload="none"
+          autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           aria-label={alt}
           className="w-full h-full object-cover"
           {...props}

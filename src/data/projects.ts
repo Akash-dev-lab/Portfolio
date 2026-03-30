@@ -27,8 +27,7 @@ export const projects: Project[] = [
     fullDescription: 'Built with React and Node.js, this platform handles thousands of products with real-time inventory updates. Features include secure payment processing via Stripe, comprehensive admin dashboard with analytics, and responsive design optimized for mobile shopping.',
     media: {
       type: 'video',
-      mp4: '/assets/Chatbot vedio.mp4',
-      webm: '/assets/Chatbot_optimized.webm',
+      mp4: '/assets/Chatbot%20vedio.mp4',
       poster: '/Project_images/Dark_Mode.png',
     },
     tags: [
@@ -49,8 +48,7 @@ export const projects: Project[] = [
     fullDescription: 'A React Native application with Firebase backend providing real-time messaging, photo/video sharing, and granular privacy controls. Includes push notifications, story features, and advanced content moderation.',
     media: {
       type: 'video',
-      mp4: '/assets/boat vedio.mp4',
-      webm: '/assets/boat_optimized.webm',
+      mp4: '/assets/boat%20vedio.mp4',
       poster: '/Project_images/Boat.png',
     },
     tags: [
@@ -64,15 +62,14 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 'nova-marketplace',
-    title: 'NOVA - Online Market Place',
-    description: 'Updated Soon...',
-    fullDescription: 'Next.js powered dashboard with D3.js visualizations, providing real-time data insights. Features customizable widgets, export capabilities, and responsive design for data analysis on any device.',
+    id: 'ai-3d-tutor',
+    title: 'AI-3D Tutor',
+    description: 'Built with React Three Fiber for high-performance graphics.',
+    fullDescription: 'An AI-powered 3D tutor that provides personalized learning experiences to students. Built with React Three Fiber for high-performance graphics.',
     media: {
       type: 'video',
-      mp4: '/Project_videos/ai-chatbot.mp4',
-      webm: '/Project_videos/ai-chatbot.webm',
-      poster: '/Project_images/coming soon.webp',
+      mp4: '/assets/Landing%20Page.mp4',
+      poster: '/assets/react.svg',
     },
     tags: [],
     github: '#',
