@@ -93,4 +93,20 @@ export const projects: Project[] = [
     features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
     featured: true,
   },
+  {
+    id: 'Local GYM Website',
+    title: 'Local GYM Website',
+    description: 'I made this website for a local gym owner. He wanted a website that was modern, responsive, and easy to navigate. He also wanted a website that was easy to update.',
+    fullDescription: '',
+    media: {
+      type: 'video',
+      mp4: '/assets/Gym.mp4',
+      poster: '/assets/react.svg',
+    },
+    tags: [],
+    github: 'https://github.com/Akash-dev-lab/Gym-Demo',
+    demo: 'https://gym-demo-rust.vercel.app/',
+    features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
+    featured: true,
+  },
 ];
