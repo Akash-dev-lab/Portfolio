@@ -1,15 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { ProjectCard } from '../components/ProjectCard';
 import { projects } from '../data/projects';
+import type { Project } from '../data/projects';
 
 export function AllProjects() {
   const sectionRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
   const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // Latest projects first
+  const latestProjects = useMemo(() => [...projects].reverse(), []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -81,7 +85,7 @@ export function AllProjects() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 max-w-7xl mx-auto">
-          {projects.map((project, index) => (
+          {latestProjects.map((project: Project, index: number) => (
             <ProjectCard
               key={project.id}
               project={project}

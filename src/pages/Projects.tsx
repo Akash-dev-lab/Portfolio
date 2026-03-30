@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { ProjectCard } from '../components/ProjectCard';
 import { projects } from '../data/projects';
+import type { Project } from '../data/projects';
 
 export function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -10,8 +11,10 @@ export function Projects() {
   const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Only show featured projects on the home page (limit to 3)
-  const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
+  // Show latest projects first (from the end of the array)
+  const featuredProjects = useMemo(() => 
+    [...projects].reverse().filter(p => p.featured).slice(0, 3), 
+  []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,7 +68,7 @@ export function Projects() {
         </div>
 
         <div className="space-y-24 max-w-6xl mx-auto">
-          {featuredProjects.map((project, index) => (
+          {featuredProjects.map((project: Project, index: number) => (
             <ProjectCard
               key={project.id}
               project={project}
