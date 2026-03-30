@@ -68,11 +68,17 @@ export function Experience() {
           {/* Timeline line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary -translate-x-1/2 hidden md:block" />
 
-          <div className="space-y-12">
+          <div 
+            className="space-y-12"
+            role="list"
+            aria-label="Professional work experience timeline"
+          >
             {experiences.map((exp, index) => (
               <div
                 key={exp.title}
                 data-index={index}
+                role="listitem"
+                aria-label={`${exp.title} at ${exp.company}, ${exp.period}`}
                 className={`experience-card relative grid md:grid-cols-2 gap-8 transition-all duration-1000 ${
                   visibleCards.includes(index) ? 'opacity-100 translate-x-0' : `opacity-0 ${index % 2 === 0 ? '-translate-x-12' : 'translate-x-12'}`
                 } ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}

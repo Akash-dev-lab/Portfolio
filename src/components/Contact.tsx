@@ -80,6 +80,9 @@ export function Contact() {
                     <a
                       key={info.label}
                       href={info.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Get in touch via ${info.label}: ${info.value}`}
                       className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-300 group hover:scale-105 hover:translate-x-2"
                     >
                       <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg group-hover:shadow-primary/25 transition-shadow duration-300">
@@ -140,6 +143,7 @@ export function Contact() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
+                  aria-required="true"
                   className="bg-secondary/50 backdrop-blur-sm border-primary/10 focus:border-primary/30"
                 />
               </div>
@@ -155,6 +159,7 @@ export function Contact() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
+                  aria-required="true"
                   className="bg-secondary/50 backdrop-blur-sm border-primary/10 focus:border-primary/30"
                 />
               </div>
@@ -169,6 +174,7 @@ export function Contact() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
+                  aria-required="true"
                   rows={6}
                   className="bg-secondary/50 backdrop-blur-sm border-primary/10 focus:border-primary/30 resize-none"
                 />

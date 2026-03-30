@@ -1,17 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { ProjectCard } from '../components/ProjectCard';
 import { projects } from '../data/projects';
 
-export function Projects() {
+export function AllProjects() {
   const sectionRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
   const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  // Only show featured projects on the home page (limit to 3)
-  const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,7 +28,7 @@ export function Projects() {
     projectCards?.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
-  }, [featuredProjects.length]);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -49,23 +47,41 @@ export function Projects() {
 
   return (
     <section
-      id="projects"
       ref={sectionRef}
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative min-h-screen pt-32 pb-24 overflow-hidden bg-background"
     >
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom duration-700">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Projects</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
-          <p className="text-muted-foreground text-lg mt-6 max-w-2xl mx-auto">
-            A selection of my recent work showcasing various technologies and design approaches
-          </p>
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6">
+          <div className="animate-in fade-in slide-in-from-left duration-700">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              All <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Projects</span>
+            </h1>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6" />
+            <p className="text-muted-foreground text-lg max-w-2xl">
+              A comprehensive list of my work, experiments, and open-source contributions.
+            </p>
+          </div>
+          
+          <div className="animate-in fade-in slide-in-from-right duration-700">
+            <Button
+              variant="outline"
+              className="rgb-border magnetic-button group"
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => {
+                  const el = document.getElementById('projects');
+                  el?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+            >
+              <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back to Home
+            </Button>
+          </div>
         </div>
 
-        <div className="space-y-24 max-w-6xl mx-auto">
-          {featuredProjects.map((project, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 max-w-7xl mx-auto">
+          {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -73,23 +89,9 @@ export function Projects() {
               isVisible={visibleProjects.includes(index)}
               mousePos={mousePos}
               onClick={() => {}}
-              layout="alternating"
+              layout="grid"
             />
           ))}
-        </div>
-
-        <div className="mt-20 text-center animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
-          <Button
-            size="lg"
-            className="rgb-border magnetic-button group"
-            onClick={() => {
-              navigate('/projects');
-              window.scrollTo(0, 0);
-            }}
-          >
-            View All Projects
-            <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
-          </Button>
         </div>
       </div>
     </section>

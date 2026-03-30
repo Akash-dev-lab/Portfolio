@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { useTheme } from './ThemeProvider';
@@ -7,6 +8,8 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,12 +29,31 @@ export function Navigation() {
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: href } });
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+    setIsMobileMenuOpen(false);
   };
+
+  // Effect to handle scrolling when navigating back to home from another page
+  useEffect(() => {
+    if (location.pathname === '/' && location.state && (location.state as any).scrollTo) {
+      const href = (location.state as any).scrollTo;
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      // Clear state to prevent scrolling on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
   return (
     <>
@@ -44,7 +66,10 @@ export function Navigation() {
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-in fade-in slide-in-from-left duration-500">
+            <div 
+              className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-in fade-in slide-in-from-left duration-500 cursor-pointer"
+              onClick={() => navigate('/')}
+            >
               Portfolio
             </div>
 
@@ -53,7 +78,9 @@ export function Navigation() {
               {navItems.map((item, index) => (
                 <button
                   key={item.href}
+                  type="button"
                   onClick={() => scrollToSection(item.href)}
+                  aria-label={`Scroll to ${item.label} section`}
                   className="relative text-foreground/80 hover:text-primary transition-colors duration-300 group animate-in fade-in slide-in-from-top"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
@@ -66,7 +93,9 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="icon"
+                type="button"
                 onClick={toggleTheme}
+                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
                 className="text-foreground hover:text-primary transition-colors animate-in fade-in slide-in-from-top"
                 style={{ animationDelay: `${navItems.length * 100}ms` }}
               >
@@ -79,7 +108,9 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="icon"
+                type="button"
                 onClick={toggleTheme}
+                aria-label="Toggle theme"
                 className="text-foreground hover:text-primary"
               >
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
@@ -87,7 +118,9 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="icon"
+                type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                 className="text-foreground hover:text-primary"
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -104,7 +137,9 @@ export function Navigation() {
             {navItems.map((item, index) => (
               <button
                 key={item.href}
+                type="button"
                 onClick={() => scrollToSection(item.href)}
+                aria-label={`Navigate to ${item.label}`}
                 className="text-2xl text-foreground/80 hover:text-primary transition-colors duration-300 animate-in fade-in slide-in-from-right"
                 style={{ animationDelay: `${index * 100}ms` }}
               >

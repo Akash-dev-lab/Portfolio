@@ -1,11 +1,13 @@
-import { useEffect, useRef, useState, Suspense } from 'react';
+import React, { useEffect, useRef, useState, Suspense, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sphere } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import * as THREE from 'three';
+import { LazyVideo } from '../components/LazyVideo';
 
 // 3D Floating orbs
-function FloatingOrbs() {
+const FloatingOrbs = React.memo(() => {
   const groupRef = useRef<THREE.Group>(null);
+  const geometry = useMemo(() => new THREE.SphereGeometry(0.2, 32, 32), []);
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -16,7 +18,10 @@ function FloatingOrbs() {
     <group ref={groupRef}>
       {[...Array(5)].map((_, i) => (
         <Float key={i} speed={2 + i * 0.5} rotationIntensity={0.5} floatIntensity={1}>
-          <Sphere args={[0.2, 32, 32]} position={[Math.cos(i * 1.2) * 2, Math.sin(i * 1.2) * 2, 0]}>
+          <mesh
+            position={[Math.cos(i * 1.2) * 2, Math.sin(i * 1.2) * 2, 0]}
+            geometry={geometry}
+          >
             <meshStandardMaterial
               color={i % 2 === 0 ? '#00ffff' : '#ff00ff'}
               emissive={i % 2 === 0 ? '#0088ff' : '#880088'}
@@ -24,14 +29,14 @@ function FloatingOrbs() {
               metalness={0.8}
               roughness={0.2}
             />
-          </Sphere>
+          </mesh>
         </Float>
       ))}
       <ambientLight intensity={0.5} />
       <pointLight position={[5, 5, 5]} intensity={1} />
     </group>
   );
-}
+});
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -89,13 +94,11 @@ export function About() {
           {/* Image */}
           <div className={`relative transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hover:scale-105 transition-transform duration-500">
-              <video
-                src="/assets/My AI-vedio.mp4"
+              <LazyVideo
+                mp4="/assets/my-ai-video.mp4"
+                poster="/Project_images/coming-soon.webp"
                 autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
+                alt="Akash God AI-powered futuristic avatar video preview"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />

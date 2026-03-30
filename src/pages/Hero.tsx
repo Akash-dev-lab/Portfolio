@@ -1,4 +1,5 @@
-import { useRef, Suspense, useState } from 'react';
+import React, { useRef, Suspense, useState, useMemo } from 'react';
+import { useMobile } from '../hooks/useMobile';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Float, MeshDistortMaterial } from '@react-three/drei';
 import { ChevronDown } from 'lucide-react';
@@ -6,7 +7,7 @@ import * as THREE from 'three';
 import { ResumeModal } from '../components/ResumeModal'
 
 // 3D Web3 geometry with click interaction
-function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
+const Web3Geometry = React.memo(({ onInteraction }: { onInteraction: () => void }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const groupRef = useRef<THREE.Group>(null);
   const [isClicked, setIsClicked] = useState(false);
@@ -28,6 +29,17 @@ function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
     meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
   });
 
+  const geometry = useMemo(() => new THREE.IcosahedronGeometry(1.5, 1), []);
+  const rings = useMemo(() => [0, 1, 2].map((i) => ({
+    geometry: new THREE.TorusGeometry(2 + i * 0.3, 0.02, 16, 100),
+    rotation: [Math.PI / 2, 0, (i * Math.PI) / 3] as [number, number, number]
+  })), []);
+  const ringMaterial = useMemo(() => new THREE.MeshBasicMaterial({
+    color: "#ff00ff",
+    transparent: true,
+    opacity: 0.3
+  }), []);
+
   const handleClick = () => {
     setIsClicked(true);
     onInteraction();
@@ -42,8 +54,8 @@ function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
           onClick={handleClick}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
+          geometry={geometry}
         >
-          <icosahedronGeometry args={[1.5, 1]} />
           <MeshDistortMaterial
             color={hovered ? "#00ffff" : "#0088ff"}
             attach="material"
@@ -58,15 +70,22 @@ function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
       </Float>
 
       {/* Orbiting rings */}
-      {[0, 1, 2].map((i) => (
-        <mesh key={i} rotation={[Math.PI / 2, 0, (i * Math.PI) / 3]}>
-          <torusGeometry args={[2 + i * 0.3, 0.02, 16, 100]} />
-          <meshBasicMaterial
-            color={isClicked ? "#00ffff" : "#ff00ff"}
-            transparent
-            opacity={isClicked ? 0.6 : 0.3}
-          />
-        </mesh>
+      {rings.map((ring, i) => (
+        <mesh 
+          key={i} 
+          geometry={ring.geometry}
+          material={ringMaterial}
+          rotation={ring.rotation}
+          onUpdate={(self) => {
+            if (isClicked) {
+              (self.material as THREE.MeshBasicMaterial).color.set("#00ffff");
+              (self.material as THREE.MeshBasicMaterial).opacity = 0.6;
+            } else {
+              (self.material as THREE.MeshBasicMaterial).color.set("#ff00ff");
+              (self.material as THREE.MeshBasicMaterial).opacity = 0.3;
+            }
+          }}
+        />
       ))}
 
       {/* Point lights for glow */}
@@ -82,11 +101,12 @@ function Web3Geometry({ onInteraction }: { onInteraction: () => void }) {
       />
     </group>
   );
-}
+});
 
 export function Hero() {
   const [interactionCount, setInteractionCount] = useState(0);
   const [showResumeModal, setShowResumeModal] = useState(false);
+  const isMobile = useMobile();
 
 
   const scrollToAbout = () => {
@@ -105,28 +125,30 @@ export function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* 3D Canvas Background */}
-      <div className="absolute inset-0 z-0">
-        <Canvas
-          camera={{ position: [0, 0, 5], fov: 75 }}
-          dpr={[1, 2]}
-          gl={{ alpha: true, antialias: true }}
-        >
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.5} />
-            <Web3Geometry onInteraction={handleGeometryInteraction} />
-            <OrbitControls
-              enableZoom={false}
-              enablePan={false}
-              autoRotate
-              autoRotateSpeed={0.5}
-            />
-          </Suspense>
-        </Canvas>
-      </div>
+      {/* 3D Canvas Background - Disabled on Mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 z-0">
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 75 }}
+            dpr={[1, 2]}
+            gl={{ alpha: true, antialias: true }}
+          >
+            <Suspense fallback={null}>
+              <ambientLight intensity={0.5} />
+              <Web3Geometry onInteraction={handleGeometryInteraction} />
+              <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                autoRotate
+                autoRotateSpeed={0.5}
+              />
+            </Suspense>
+          </Canvas>
+        </div>
+      )}
 
-      {/* Decorative floating elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+      {/* Decorative floating elements - Enhanced for mobile when 3D is off */}
+      <div className={`absolute inset-0 overflow-hidden pointer-events-none z-10 ${isMobile ? 'opacity-40' : ''}`}>
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float idle-pulse" />
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float-delayed idle-pulse" />
         <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-float-slow idle-pulse" />
@@ -153,18 +175,22 @@ export function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom duration-700 delay-800">
             <button
+              type="button"
               onClick={() => setShowResumeModal(true)}
+              aria-label="Open Resume Modal"
               className="magnetic-button rgb-border px-8 py-4 bg-secondary/50 backdrop-blur-sm text-foreground rounded-lg font-semibold border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Download Resume
             </button>
             <button
+              type="button"
               onClick={() => {
                 const contactSection = document.querySelector('#contact');
                 if (contactSection) {
                   contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
+              aria-label="Scroll to contact section"
               className="magnetic-button px-8 py-4 bg-secondary/50 backdrop-blur-sm text-foreground rounded-lg font-semibold border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Get In Touch
@@ -175,7 +201,9 @@ export function Hero() {
 
       {/* Scroll Indicator */}
       <button
+        type="button"
         onClick={scrollToAbout}
+        aria-label="Scroll down to About section"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-muted-foreground hover:text-primary transition-colors animate-in fade-in delay-1000 magnetic-element"
       >
         <div className="animate-bounce">

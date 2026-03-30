@@ -182,7 +182,11 @@ export function Skills() {
     >
       {/* 3D Background */}
       <div className="absolute inset-0 opacity-30 pointer-events-auto">
-        <Canvas camera={{ position: [0, 0, 8], fov: 75 }} dpr={[1, 2]}>
+        <Canvas 
+          camera={{ position: [0, 0, 8], fov: 75 }} 
+          dpr={[1, 2]}
+          aria-label="Interactive 3D technology icons scene"
+        >
           <Suspense fallback={null}>
             <SkillsScene onIconClick={handleIconClick} />
           </Suspense>
@@ -213,7 +217,11 @@ export function Skills() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+          role="list"
+          aria-label="Core professional skills"
+        >
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             const cardMouseX = mousePos.x - (index % 3) * 300;
@@ -222,6 +230,8 @@ export function Skills() {
             return (
               <div
                 key={skill.title}
+                role="listitem"
+                aria-label={`${skill.title}: ${skill.description}`}
                 className={`group relative p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-500 cursor-pointer hover:scale-105 hover:-translate-y-2 magnetic-element ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                   }`}
                 style={{
@@ -256,10 +266,16 @@ export function Skills() {
         {/* Tech stack icons grid */}
         <div className={`mt-16 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <p className="text-muted-foreground mb-8 text-center text-lg">Technologies I work with:</p>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-6 max-w-6xl mx-auto">
+          <div 
+            className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-6 max-w-6xl mx-auto"
+            role="list"
+            aria-label="Technology stack icons"
+          >
             {technologies.map((tech, index) => (
               <div
                 key={tech.name}
+                role="listitem"
+                aria-label={`${tech.name} technology`}
                 className={`group flex flex-col items-center gap-3 p-4 rounded-xl bg-card/30 backdrop-blur-sm border border-primary/10 hover:border-primary/30 hover:bg-card/50 transition-all duration-500 cursor-pointer hover:scale-110 hover:-translate-y-2 magnetic-element ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 style={{ transitionDelay: `${(index + 6) * 80}ms` }}
@@ -267,8 +283,9 @@ export function Skills() {
                 <div className="relative w-12 h-12 flex items-center justify-center">
                   <img
                     src={tech.icon}
-                    alt={tech.name}
+                    alt={`${tech.name} tech icon`}
                     loading="lazy"
+                    decoding="async"
                     draggable={false}
                     className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
                   />
