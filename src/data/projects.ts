@@ -109,4 +109,20 @@ export const projects: Project[] = [
     features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
     featured: true,
   },
+  {
+    id: 'RankBoost Studio',
+    title: 'RankBoost Studio',
+    description: 'RankBoost Studio is a modern, AI-powered SEO analytics platform designed to help businesses optimize their online presence and improve search engine rankings. Built with Next.js and Tailwind CSS, it provides real-time insights, competitor analysis, and actionable recommendations to boost visibility and drive organic growth.',
+    fullDescription: 'RankBoost Studio is a modern, AI-powered SEO analytics platform designed to help businesses optimize their online presence and improve search engine rankings. Built with Next.js and Tailwind CSS, it provides real-time insights, competitor analysis, and actionable recommendations to boost visibility and drive organic growth.',
+    media: {
+      type: 'video',
+      mp4: '/assets/RankBoost.mp4',
+      poster: '/assets/react.svg',
+    },
+    tags: [],
+    github: 'https://github.com/Akash-dev-lab/RankBoost-Studio',
+    demo: 'https://rank-boost-studio.vercel.app/',
+    features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
+    featured: true,
+  },
 ];
