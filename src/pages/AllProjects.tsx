@@ -65,7 +65,7 @@ export function AllProjects() {
           <div className="animate-in fade-in slide-in-from-right duration-700">
             <Button
               variant="outline"
-              className="rgb-border magnetic-button group"
+              className="rgb-border magnetic-button group text-foreground"
               onClick={() => {
                 navigate('/');
                 setTimeout(() => {

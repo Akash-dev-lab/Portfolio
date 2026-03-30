@@ -81,7 +81,7 @@ export function Projects() {
         <div className="mt-20 text-center animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
           <Button
             size="lg"
-            className="rgb-border magnetic-button group"
+            className="rgb-border magnetic-button group text-foreground"
             onClick={() => {
               navigate('/projects');
               window.scrollTo(0, 0);

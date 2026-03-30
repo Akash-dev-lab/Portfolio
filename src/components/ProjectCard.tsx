@@ -111,7 +111,7 @@ export function ProjectCard({ project, index, isVisible, mousePos, onClick, layo
               ))}
             </div>
             <div className="flex gap-4 pt-4">
-              <p className="rgb-border px-4 py-2 rounded-full text-sm text-muted-foreground">
+              <p className="rgb-border px-4 py-2 rounded-full text-sm text-foreground">
                 Consider Readme.md File to know more...
               </p>
             </div>
