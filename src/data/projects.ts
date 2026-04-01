@@ -116,7 +116,7 @@ export const projects: Project[] = [
     fullDescription: 'RankBoost Studio is a modern, AI-powered SEO analytics platform designed to help businesses optimize their online presence and improve search engine rankings. Built with Next.js and Tailwind CSS, it provides real-time insights, competitor analysis, and actionable recommendations to boost visibility and drive organic growth.',
     media: {
       type: 'video',
-      mp4: '/assets/RankBoost.mp4',
+      mp4: './assets/RankBoost.mp4',
       poster: '/assets/react.svg',
     },
     tags: [],
