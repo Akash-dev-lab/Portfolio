@@ -27,7 +27,7 @@ export const projects: Project[] = [
     fullDescription: 'Built with React and Node.js, this platform handles thousands of products with real-time inventory updates. Features include secure payment processing via Stripe, comprehensive admin dashboard with analytics, and responsive design optimized for mobile shopping.',
     media: {
       type: 'video',
-      mp4: '/assets/Chatbot%20vedio.mp4',
+      mp4: '/assets/Chatbot%20Video.mp4',
       poster: '/Project_images/Dark_Mode.png',
     },
     tags: [
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     fullDescription: 'A React Native application with Firebase backend providing real-time messaging, photo/video sharing, and granular privacy controls. Includes push notifications, story features, and advanced content moderation.',
     media: {
       type: 'video',
-      mp4: '/assets/boat%20vedio.mp4',
+      mp4: '/assets/boat%20video.mp4',
       poster: '/Project_images/Boat.png',
     },
     tags: [
@@ -122,6 +122,22 @@ export const projects: Project[] = [
     tags: [],
     github: 'https://github.com/Akash-dev-lab/RankBoost-Studio',
     demo: 'https://rank-boost-studio.vercel.app/',
+    features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
+    featured: true,
+  },
+  {
+    id: 'Love Productions',
+    title: 'Love Productions',
+    description: 'A high-performance lead generation landing page built for a real client, focused on conversion, speed, and scalability. Designed with a modern UI and optimized for 90+ Lighthouse scores, ensuring fast load times and seamless user experience across devices.',
+    fullDescription: 'Love Productions is a modern, AI-powered marketing platform designed to help businesses create engaging content and grow their online presence. Built with Next.js and Tailwind CSS, it provides real-time insights, competitor analysis, and actionable recommendations to boost visibility and drive organic growth.',
+    media: {
+      type: 'video',
+      mp4: './public/assets/Love-Productions.mp4',
+      poster: '/assets/react.svg',
+    },
+    tags: [],
+    github: 'https://github.com/Akash-dev-lab/Lovely-Production/tree/main/lovely-production',
+    demo: 'https://lovely-production.vercel.app/',
     features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
     featured: true,
   },
