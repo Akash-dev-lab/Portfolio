@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
-import { Button } from '../components/ui/Button';
-import { ProjectCard } from '../components/ProjectCard';
-import { projects } from '../data/projects';
+import { ArrowLeft, Sparkles } from 'lucide-react';
 import type { Project } from '../data/projects';
+import { projects } from '../data/projects';
+import { ProjectCard } from '../components/ProjectCard';
+import { Button } from '../components/ui/Button';
 
 export function AllProjects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -12,15 +12,18 @@ export function AllProjects() {
   const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Latest projects first
   const latestProjects = useMemo(() => [...projects].reverse(), []);
+  const featuredCount = latestProjects.filter((project) => project.featured).length;
+  const techCount = new Set(
+    latestProjects.flatMap((project) => project.tags.map((tag) => tag.label))
+  ).size;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            const index = parseInt(entry.target.getAttribute('data-index') || '0', 10);
             setVisibleProjects((prev) => [...new Set([...prev, index])]);
           }
         });
@@ -35,12 +38,12 @@ export function AllProjects() {
   }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (event: MouseEvent) => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       setMousePos({
-        x: ((e.clientX - rect.left) / rect.width) * 2 - 1,
-        y: -((e.clientY - rect.top) / rect.height) * 2 + 1,
+        x: ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        y: -((event.clientY - rect.top) / rect.height) * 2 + 1,
       });
     };
 
@@ -50,52 +53,89 @@ export function AllProjects() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen pt-32 pb-24 overflow-hidden bg-background"
-    >
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6">
-          <div className="animate-in fade-in slide-in-from-left duration-700">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              All <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Projects</span>
-            </h1>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6" />
-            <p className="text-muted-foreground text-lg max-w-2xl">
-              A comprehensive list of my work, experiments, and open-source contributions.
-            </p>
-          </div>
-          
-          <div className="animate-in fade-in slide-in-from-right duration-700">
-            <Button
-              variant="outline"
-              className="rgb-border magnetic-button group text-foreground"
-              onClick={() => {
-                navigate('/');
-                setTimeout(() => {
-                  const el = document.getElementById('projects');
-                  el?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-            >
-              <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              Back to Home
-            </Button>
-          </div>
-        </div>
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-background pb-24 pt-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[8%] top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute right-[10%] top-40 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
+        <div className="absolute bottom-[12%] left-1/3 h-72 w-72 rounded-full bg-primary/8 blur-3xl" />
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 max-w-7xl mx-auto">
-          {latestProjects.map((project: Project, index: number) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              isVisible={visibleProjects.includes(index)}
-              mousePos={mousePos}
-              onClick={() => {}}
-              layout="grid"
-            />
-          ))}
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="section-shell mx-auto max-w-7xl">
+          <div className="mb-14 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+            <div className="animate-in fade-in slide-in-from-left duration-700">
+              <span className="section-kicker">All Projects</span>
+              <h1 className="mt-5 text-4xl font-bold md:text-6xl">
+                Full archive of
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> shipped ideas</span>
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                A broader look at my client work, redesigns, learning builds, and experiments. Each project reflects a mix of execution, visual thinking, and problem-solving.
+              </p>
+            </div>
+
+            <div className="animate-in fade-in slide-in-from-right duration-700">
+              <div className="glass-panel rounded-[1.75rem] p-5">
+                <div className="mb-4 flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                  <Sparkles className="h-4 w-4 text-accent" />
+                  Portfolio snapshot
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { label: 'Projects', value: String(latestProjects.length) },
+                    { label: 'Featured', value: String(featuredCount) },
+                    { label: 'Tech Tags', value: String(techCount) },
+                  ].map((item) => (
+                    <div key={item.label} className="rounded-2xl border border-primary/10 bg-background/65 px-4 py-4 text-center">
+                      <div className="text-2xl font-bold text-foreground">{item.value}</div>
+                      <div className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5">
+                  <Button
+                    variant="secondary"
+                    className="magnetic-button w-full rounded-full border border-primary/15 bg-background/75 text-foreground hover:border-primary/30 hover:bg-background/90"
+                    onClick={() => {
+                      navigate('/');
+                      setTimeout(() => {
+                        const element = document.getElementById('projects');
+                        element?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }}
+                  >
+                    <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                    Back to Home
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-10 flex flex-wrap gap-3">
+            {['Case-study style builds', 'Responsive-first UI', 'Performance-aware frontends'].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-primary/12 bg-background/70 px-4 py-2 text-sm font-medium text-foreground/80"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2">
+            {latestProjects.map((project: Project, index: number) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                isVisible={visibleProjects.includes(index)}
+                mousePos={mousePos}
+                onClick={() => {}}
+                layout="grid"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

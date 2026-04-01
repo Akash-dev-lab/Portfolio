@@ -83,17 +83,22 @@ export function About() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            About <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Me</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
-        </div>
+        <div className="section-shell mx-auto max-w-6xl">
+          <div className={`mb-14 text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="section-kicker">About</span>
+            <h2 className="mt-5 text-4xl font-bold md:text-5xl">
+              Designing with clarity,
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> building with intent</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
+              I care about how products feel, how fast they load, and how easily users can trust what they are interacting with.
+            </p>
+          </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           {/* Image */}
           <div className={`relative transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-            <div className="relative aspect-square rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hover:scale-105 transition-transform duration-500">
+            <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-primary/15 bg-background/60 shadow-soft hover:scale-[1.02] transition-transform duration-500">
               <LazyVideo
                 mp4="/assets/my-ai-video.mp4"
                 poster="/Project_images/coming-soon.webp"
@@ -101,48 +106,59 @@ export function About() {
                 alt="Akash God AI-powered futuristic avatar video preview"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-              {/* Animated border effect */}
-              <div className="absolute inset-0 border-2 border-primary/30 rounded-2xl animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
+              <div className="absolute inset-4 rounded-[1.4rem] border border-white/10" />
+              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-background/60 px-4 py-3 backdrop-blur-md">
+                <p className="text-sm uppercase tracking-[0.25em] text-primary/80">Current focus</p>
+                <p className="mt-2 text-lg font-semibold text-foreground">Scalable frontends with high visual polish</p>
+              </div>
             </div>
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/30 rounded-2xl -z-10 animate-float" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 border-2 border-accent/30 rounded-2xl -z-10 animate-float-delayed" />
+            <div className="absolute -top-4 -right-4 h-24 w-24 rounded-3xl border border-primary/25 bg-primary/10 -z-10 animate-float" />
+            <div className="absolute -bottom-4 -left-4 h-32 w-32 rounded-[2rem] border border-accent/30 bg-accent/10 -z-10 animate-float-delayed" />
           </div>
 
           {/* Content */}
           <div className="space-y-6">
             <h3 className={`text-3xl font-bold transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-              Passionate About Building Digital Solutions
+              Product-minded development for ambitious brands and startups
             </h3>
 
             <p className={`text-muted-foreground text-lg leading-relaxed transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-              I'm a full-stack developer with a passion for creating beautiful, functional, and user-friendly applications. With expertise in modern web technologies and 3D graphics, I transform ideas into immersive reality through clean code and innovative solutions.
+              I am a full-stack developer focused on shaping interfaces that look intentional, move smoothly, and stay maintainable long after launch. My work blends product thinking, frontend craft, and performance discipline.
             </p>
 
             <p className={`text-muted-foreground text-lg leading-relaxed transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-              My journey in tech has been driven by curiosity and a commitment to continuous learning. I specialize in building scalable applications that not only meet technical requirements but also deliver exceptional user experiences with cutting-edge 3D interactions.
+              From cinematic landing pages to robust application flows, I like building experiences that feel premium for users while remaining practical for teams shipping and iterating quickly.
             </p>
+
+            <div className={`grid grid-cols-1 gap-3 pt-1 text-sm font-medium text-foreground/80 transition-all duration-700 delay-500 sm:grid-cols-3 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              {['Clear UX systems', 'Fast delivery cycles', 'Motion with restraint'].map((item) => (
+                <div key={item} className="rounded-2xl border border-primary/10 bg-background/65 px-4 py-3">
+                  {item}
+                </div>
+              ))}
+            </div>
 
             <div className={`grid grid-cols-2 gap-4 pt-4 transition-all duration-700 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               {[
                 { label: 'Years Experience', value: '2+' },
-                { label: 'Projects Completed', value: '3+' },
+                { label: 'Projects Completed', value: '8+' },
                 { label: 'Technologies', value: '20+' },
-                // { label: 'Happy Clients', value: '30+' },
+                { label: 'Design Precision', value: 'High' },
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="p-4 rounded-lg bg-secondary/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 cursor-pointer"
+                  className="rounded-3xl border border-primary/10 bg-background/70 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-lg hover:shadow-primary/10"
                 >
                   <div className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+                  <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -102,119 +104,76 @@
 @layer base {
     :root {
         --radius: 0.75rem;
-        
-        /* Dark tech theme - Base colors */
-        --background: 0.12 0 0;
-        --foreground: 0.98 0 0;
-        
-        /* Card colors with subtle transparency */
-        --card: 0.15 0 0;
-        --card-foreground: 0.98 0 0;
-        
-        --popover: 0.15 0 0;
-        --popover-foreground: 0.98 0 0;
-        
-        /* Neon cyan/blue primary accent */
-        --primary: 0.70 0.20 220;
-        --primary-foreground: 0.98 0 0;
-        
-        /* Secondary dark gray */
-        --secondary: 0.20 0 0;
-        --secondary-foreground: 0.98 0 0;
-        
-        /* Muted elements */
-        --muted: 0.22 0 0;
-        --muted-foreground: 0.65 0 0;
-        
-        /* Neon purple/magenta accent */
-        --accent: 0.65 0.25 310;
-        --accent-foreground: 0.98 0 0;
-        
-        /* Destructive red */
+        --background: 0.18 0.02 258;
+        --foreground: 0.97 0.01 255;
+        --card: 0.24 0.02 255;
+        --card-foreground: 0.97 0.01 255;
+        --popover: 0.22 0.02 255;
+        --popover-foreground: 0.97 0.01 255;
+        --primary: 0.68 0.17 246;
+        --primary-foreground: 0.98 0.01 255;
+        --secondary: 0.29 0.02 255;
+        --secondary-foreground: 0.97 0.01 255;
+        --muted: 0.26 0.02 255;
+        --muted-foreground: 0.73 0.02 255;
+        --accent: 0.78 0.15 82;
+        --accent-foreground: 0.16 0.02 255;
         --destructive: 0.60 0.25 25;
-        --destructive-foreground: 0.98 0 0;
-        
-        /* Borders and inputs with transparency */
-        --border: 1 0 0 / 12%;
-        --input: 1 0 0 / 15%;
-        --ring: 0.70 0.20 220;
-        
-        /* Chart colors - vibrant tech palette */
-        --chart-1: 0.70 0.20 220;
-        --chart-2: 0.65 0.25 310;
-        --chart-3: 0.75 0.22 180;
-        --chart-4: 0.68 0.23 280;
-        --chart-5: 0.72 0.21 200;
-        
-        /* Sidebar */
-        --sidebar: 0.15 0 0;
-        --sidebar-foreground: 0.98 0 0;
-        --sidebar-primary: 0.70 0.20 220;
-        --sidebar-primary-foreground: 0.98 0 0;
-        --sidebar-accent: 0.22 0 0;
-        --sidebar-accent-foreground: 0.98 0 0;
-        --sidebar-border: 1 0 0 / 12%;
-        --sidebar-ring: 0.70 0.20 220;
-        
-        /* Scroll storytelling variables */
+        --destructive-foreground: 0.98 0.01 255;
+        --border: 0.90 0.02 255 / 14%;
+        --input: 0.90 0.02 255 / 16%;
+        --ring: 0.68 0.17 246;
+        --chart-1: 0.68 0.17 246;
+        --chart-2: 0.78 0.15 82;
+        --chart-3: 0.74 0.12 190;
+        --chart-4: 0.67 0.12 300;
+        --chart-5: 0.72 0.18 160;
+        --sidebar: 0.22 0.02 255;
+        --sidebar-foreground: 0.97 0.01 255;
+        --sidebar-primary: 0.68 0.17 246;
+        --sidebar-primary-foreground: 0.98 0.01 255;
+        --sidebar-accent: 0.29 0.02 255;
+        --sidebar-accent-foreground: 0.97 0.01 255;
+        --sidebar-border: 0.90 0.02 255 / 14%;
+        --sidebar-ring: 0.68 0.17 246;
         --scroll-section: 0;
         --scroll-velocity: 0;
         --idle-intensity: 0;
     }
 
     .light {
-        /* Light theme - Base colors */
-        --background: 0.98 0 0;
-        --foreground: 0.15 0 0;
-        
-        /* Card colors */
-        --card: 0.95 0 0;
-        --card-foreground: 0.15 0 0;
-        
-        --popover: 0.98 0 0;
-        --popover-foreground: 0.15 0 0;
-        
-        /* Vibrant blue primary for light mode */
-        --primary: 0.55 0.22 240;
-        --primary-foreground: 0.98 0 0;
-        
-        /* Light gray secondary */
-        --secondary: 0.92 0 0;
-        --secondary-foreground: 0.15 0 0;
-        
-        /* Muted elements */
-        --muted: 0.90 0 0;
-        --muted-foreground: 0.45 0 0;
-        
-        /* Purple accent for light mode */
-        --accent: 0.60 0.20 280;
-        --accent-foreground: 0.98 0 0;
-        
-        /* Destructive red */
+        --background: 0.98 0.01 95;
+        --foreground: 0.23 0.03 250;
+        --card: 0.995 0.01 95;
+        --card-foreground: 0.23 0.03 250;
+        --popover: 1 0.01 95;
+        --popover-foreground: 0.23 0.03 250;
+        --primary: 0.58 0.18 248;
+        --primary-foreground: 0.99 0.01 95;
+        --secondary: 0.95 0.02 230;
+        --secondary-foreground: 0.23 0.03 250;
+        --muted: 0.94 0.01 220;
+        --muted-foreground: 0.47 0.04 245;
+        --accent: 0.70 0.16 80;
+        --accent-foreground: 0.20 0.03 250;
         --destructive: 0.55 0.25 25;
-        --destructive-foreground: 0.98 0 0;
-        
-        /* Borders and inputs */
-        --border: 0 0 0 / 15%;
-        --input: 0 0 0 / 12%;
-        --ring: 0.55 0.22 240;
-        
-        /* Chart colors - vibrant palette for light mode */
-        --chart-1: 0.55 0.22 240;
-        --chart-2: 0.60 0.20 280;
-        --chart-3: 0.60 0.22 180;
-        --chart-4: 0.58 0.21 260;
-        --chart-5: 0.62 0.20 200;
-        
-        /* Sidebar */
-        --sidebar: 0.95 0 0;
-        --sidebar-foreground: 0.15 0 0;
-        --sidebar-primary: 0.55 0.22 240;
-        --sidebar-primary-foreground: 0.98 0 0;
-        --sidebar-accent: 0.92 0 0;
-        --sidebar-accent-foreground: 0.15 0 0;
-        --sidebar-border: 0 0 0 / 15%;
-        --sidebar-ring: 0.55 0.22 240;
+        --destructive-foreground: 0.98 0.01 95;
+        --border: 0.40 0.03 250 / 12%;
+        --input: 0.40 0.03 250 / 10%;
+        --ring: 0.58 0.18 248;
+        --chart-1: 0.58 0.18 248;
+        --chart-2: 0.70 0.16 80;
+        --chart-3: 0.62 0.16 200;
+        --chart-4: 0.61 0.12 305;
+        --chart-5: 0.67 0.15 165;
+        --sidebar: 0.985 0.01 95;
+        --sidebar-foreground: 0.23 0.03 250;
+        --sidebar-primary: 0.58 0.18 248;
+        --sidebar-primary-foreground: 0.99 0.01 95;
+        --sidebar-accent: 0.95 0.02 230;
+        --sidebar-accent-foreground: 0.23 0.03 250;
+        --sidebar-border: 0.40 0.03 250 / 12%;
+        --sidebar-ring: 0.58 0.18 248;
     }
 
     * {
@@ -234,20 +193,49 @@
     body {
         @apply bg-background text-foreground;
         font-feature-settings: "rlig" 1, "calt" 1;
+        font-family: "Manrope", sans-serif;
         cursor: none;
-        /* Critical: Enable vertical scrolling with auto height */
         overflow-y: auto;
         overflow-x: hidden;
         height: auto;
         min-height: 100%;
         position: relative;
+        background-color: oklch(var(--background));
+        background-image:
+            radial-gradient(circle at 12% 18%, oklch(var(--primary) / 0.16), transparent 22%),
+            radial-gradient(circle at 88% 20%, oklch(var(--accent) / 0.16), transparent 18%),
+            radial-gradient(circle at 50% 65%, oklch(var(--primary) / 0.08), transparent 32%),
+            linear-gradient(180deg, oklch(var(--background)) 0%, oklch(var(--background) / 0.98) 42%, oklch(var(--card) / 0.88) 100%);
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+            linear-gradient(oklch(var(--foreground) / 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, oklch(var(--foreground) / 0.03) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+        opacity: 0.5;
+        z-index: -1;
     }
     
     #root {
-        /* Critical: Ensure root can expand */
         height: auto;
         min-height: 100vh;
         overflow: visible;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Space Grotesk", "Manrope", sans-serif;
+        letter-spacing: -0.05em;
     }
     
     /* Lenis smooth scroll classes - non-locking mode */
@@ -288,11 +276,11 @@
     }
     
     ::-webkit-scrollbar-track {
-        background: oklch(var(--background));
+        background: transparent;
     }
     
     ::-webkit-scrollbar-thumb {
-        background: oklch(var(--primary) / 0.3);
+        background: linear-gradient(oklch(var(--primary) / 0.45), oklch(var(--accent) / 0.45));
         border-radius: 5px;
     }
     
@@ -429,6 +417,77 @@
         background: oklch(var(--card) / 0.5);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
+    }
+
+    .glass-panel {
+        background:
+            linear-gradient(135deg, oklch(var(--card) / 0.78), oklch(var(--card) / 0.42)),
+            linear-gradient(180deg, transparent, oklch(var(--background) / 0.2));
+        border: 1px solid oklch(var(--border));
+        box-shadow:
+            0 24px 80px oklch(0 0 0 / 0.12),
+            inset 0 1px 0 oklch(var(--foreground) / 0.06);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .section-shell {
+        position: relative;
+        overflow: hidden;
+        border-radius: 32px;
+        padding: clamp(1.5rem, 2vw, 2.25rem);
+        background:
+            radial-gradient(circle at top left, oklch(var(--primary) / 0.12), transparent 28%),
+            radial-gradient(circle at bottom right, oklch(var(--accent) / 0.12), transparent 22%),
+            linear-gradient(180deg, oklch(var(--card) / 0.82), oklch(var(--card) / 0.56));
+        border: 1px solid oklch(var(--border));
+        box-shadow:
+            0 18px 60px oklch(0 0 0 / 0.10),
+            inset 0 1px 0 oklch(var(--foreground) / 0.06);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    .section-shell::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: 31px;
+        border: 1px solid oklch(var(--foreground) / 0.04);
+        pointer-events: none;
+    }
+
+    .section-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        background: oklch(var(--background) / 0.68);
+        border: 1px solid oklch(var(--border));
+        color: oklch(var(--muted-foreground));
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    .section-kicker::before {
+        content: "";
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, oklch(var(--primary)), oklch(var(--accent)));
+        box-shadow: 0 0 16px oklch(var(--primary) / 0.45);
+    }
+
+    .font-display {
+        font-family: "Space Grotesk", "Manrope", sans-serif;
+        letter-spacing: -0.05em;
+    }
+
+    .shadow-soft {
+        box-shadow: 0 24px 80px oklch(0 0 0 / 0.14);
     }
     
     /* Magnetic button effect */

@@ -14,6 +14,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index, isVisible, mousePos, onClick, layout = 'alternating' }: ProjectCardProps) {
   const isReversed = layout === 'alternating' && index % 2 === 1;
+  const isGrid = layout === 'grid';
 
   return (
     <div
@@ -22,7 +23,7 @@ export function ProjectCard({ project, index, isVisible, mousePos, onClick, layo
         isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-16 scale-95'
       }`}
     >
-      <div className={`grid ${layout === 'alternating' ? 'md:grid-cols-2' : 'grid-cols-1'} gap-8 items-center ${isReversed ? 'md:flex-row-reverse' : ''}`}>
+      <div className={`grid ${layout === 'alternating' ? 'md:grid-cols-2' : 'grid-cols-1'} gap-10 items-center ${isReversed ? 'md:flex-row-reverse' : ''}`}>
         {/* Image/Media Side */}
         <div
           className={`relative group cursor-pointer ${isReversed ? 'md:order-2' : ''}`}
@@ -32,14 +33,14 @@ export function ProjectCard({ project, index, isVisible, mousePos, onClick, layo
             transition: 'transform 0.3s ease-out',
           } : {}}
         >
-          <div className="relative aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 hover:scale-105 transition-transform duration-500 hover:shadow-primary/30 magnetic-element">
+          <div className={`glass-panel magnetic-element relative overflow-hidden border border-primary/15 shadow-soft transition-transform duration-500 hover:scale-[1.02] hover:shadow-primary/10 ${isGrid ? 'rounded-[1.9rem]' : 'aspect-video rounded-[1.75rem]'}`}>
             {project.media.type === 'video' ? (
               <LazyVideo
                 mp4={project.media.mp4}
                 webm={project.media.webm}
                 poster={project.media.poster || ''}
                 alt={`${project.title} project video preview`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className={`${isGrid ? 'aspect-[16/10]' : 'w-full h-full'} object-cover transition-transform duration-500 group-hover:scale-110`}
               />
             ) : (
               <img
@@ -49,11 +50,11 @@ export function ProjectCard({ project, index, isVisible, mousePos, onClick, layo
                 decoding="async"
                 width={800}
                 height={450}
-                className="w-full h-full object-cover"
+                className={`${isGrid ? 'aspect-[16/10]' : 'w-full h-full'} object-cover`}
               />
             )}
 
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8 gap-4">
+            <div className="absolute inset-0 flex items-end justify-center gap-4 bg-gradient-to-t from-background/95 via-background/25 to-transparent pb-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               <Button
                 size="sm"
                 variant="secondary"
@@ -78,26 +79,41 @@ export function ProjectCard({ project, index, isVisible, mousePos, onClick, layo
             </div>
           </div>
           {/* Decorative elements */}
-          <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-2xl -z-10 group-hover:border-primary/40 transition-colors duration-300 animate-float" />
+          <div className={`absolute -right-4 -top-4 h-24 w-24 rounded-[1.5rem] border border-primary/20 bg-primary/10 -z-10 transition-colors duration-300 group-hover:border-primary/35 animate-float ${isGrid ? 'opacity-70' : ''}`} />
         </div>
 
         {/* Content Side */}
         <div className={isReversed ? 'md:order-1' : ''}>
-          <div className="space-y-4">
+          <div className={`space-y-5 ${isGrid ? 'glass-panel rounded-[1.9rem] p-6' : ''}`}>
+            <div className="section-kicker">
+              {isGrid ? 'Project Showcase' : 'Featured Build'}
+            </div>
             <h3 
               className="text-3xl font-bold hover:text-primary transition-colors duration-300 cursor-pointer magnetic-element" 
               onClick={onClick}
             >
               {project.title}
             </h3>
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-lg leading-relaxed text-muted-foreground">
               {project.description}
             </p>
+            {isGrid && project.features.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {project.features.slice(0, 3).map((feature) => (
+                  <span
+                    key={feature}
+                    className="rounded-full border border-primary/12 bg-background/70 px-3 py-1 text-xs font-medium text-foreground/75"
+                  >
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            )}
             <div className="flex flex-wrap gap-4 md:gap-8">
               {project.tags.map((tag) => (
                 <span
                   key={tag.label}
-                  className="rounded-full bg-secondary/50 backdrop-blur-sm border border-primary/10 p-2 hover:border-primary/30 hover:scale-110 transition-all duration-300 cursor-pointer magnetic-element flex items-center justify-center"
+                  className="flex cursor-pointer items-center justify-center rounded-2xl border border-primary/10 bg-background/70 p-3 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-primary/30 magnetic-element"
                   title={tag.label}
                 >
                   <img
@@ -111,8 +127,8 @@ export function ProjectCard({ project, index, isVisible, mousePos, onClick, layo
               ))}
             </div>
             <div className="flex gap-4 pt-4">
-              <p className="rgb-border px-4 py-2 rounded-full text-sm text-foreground">
-                Consider Readme.md File to know more...
+              <p className="rounded-full border border-primary/15 bg-background/70 px-4 py-2 text-sm text-foreground/80">
+                {isGrid ? 'Open the repo or live demo for a deeper walkthrough.' : 'Read the repository for implementation details and setup notes.'}
               </p>
             </div>
           </div>
