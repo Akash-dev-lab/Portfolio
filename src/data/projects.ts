@@ -116,7 +116,7 @@ export const projects: Project[] = [
     fullDescription: 'RankBoost Studio is a modern, AI-powered SEO analytics platform designed to help businesses optimize their online presence and improve search engine rankings. Built with Next.js and Tailwind CSS, it provides real-time insights, competitor analysis, and actionable recommendations to boost visibility and drive organic growth.',
     media: {
       type: 'video',
-      mp4: './assets/RankBoost.mp4',
+      mp4: '/assets/RankBoost.mp4',
       poster: '/assets/react.svg',
     },
     tags: [],
@@ -132,8 +132,8 @@ export const projects: Project[] = [
     fullDescription: 'Love Productions is a modern, AI-powered marketing platform designed to help businesses create engaging content and grow their online presence. Built with Next.js and Tailwind CSS, it provides real-time insights, competitor analysis, and actionable recommendations to boost visibility and drive organic growth.',
     media: {
       type: 'video',
-      mp4: '/assets/Love-Productions.mp4',
-      poster: '/assets/react.svg',
+      mp4: './public/assets/Love-Productions.mp4',
+      poster: './public/assets/react.svg',
     },
     tags: [],
     github: 'https://github.com/Akash-dev-lab/Lovely-Production/tree/main/lovely-production',
