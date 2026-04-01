@@ -132,7 +132,7 @@ export const projects: Project[] = [
     fullDescription: 'Love Productions is a modern, AI-powered marketing platform designed to help businesses create engaging content and grow their online presence. Built with Next.js and Tailwind CSS, it provides real-time insights, competitor analysis, and actionable recommendations to boost visibility and drive organic growth.',
     media: {
       type: 'video',
-      mp4: './public/assets/Love-Productions.mp4',
+      mp4: '/assets/Love-Productions.mp4',
       poster: '/assets/react.svg',
     },
     tags: [],
