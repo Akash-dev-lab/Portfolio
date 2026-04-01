@@ -133,7 +133,7 @@ export const projects: Project[] = [
     media: {
       type: 'video',
       mp4: './public/assets/Love-Productions.mp4',
-      poster: './public/assets/react.svg',
+      poster: '/assets/react.svg',
     },
     tags: [],
     github: 'https://github.com/Akash-dev-lab/Lovely-Production/tree/main/lovely-production',
