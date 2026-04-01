@@ -27,7 +27,7 @@ export const projects: Project[] = [
     fullDescription: 'Built with React and Node.js, this platform handles thousands of products with real-time inventory updates. Features include secure payment processing via Stripe, comprehensive admin dashboard with analytics, and responsive design optimized for mobile shopping.',
     media: {
       type: 'video',
-      mp4: '/assets/Chatbot%20Video.mp4',
+      mp4: '/assets/Chatbot%20video.mp4',
       poster: '/Project_images/Dark_Mode.png',
     },
     tags: [
@@ -132,7 +132,7 @@ export const projects: Project[] = [
     fullDescription: 'Love Productions is a modern, AI-powered marketing platform designed to help businesses create engaging content and grow their online presence. Built with Next.js and Tailwind CSS, it provides real-time insights, competitor analysis, and actionable recommendations to boost visibility and drive organic growth.',
     media: {
       type: 'video',
-      mp4: './public/assets/Love-Productions.mp4',
+      mp4: '/assets/Love-productions.mp4',
       poster: '/assets/react.svg',
     },
     tags: [],
