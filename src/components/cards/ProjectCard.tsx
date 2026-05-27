@@ -1,16 +1,8 @@
 import { Github, ExternalLink } from 'lucide-react';
-import { Button } from './ui/Button';
-import { LazyVideo } from './LazyVideo';
-import type { Project } from '../data/projects';
-
-interface ProjectCardProps {
-  project: Project;
-  index: number;
-  isVisible: boolean;
-  mousePos: { x: number; y: number };
-  onClick: () => void;
-  layout?: 'alternating' | 'grid';
-}
+import { Button } from '../ui/Button';
+import { LazyVideo } from '../LazyVideo';
+import type { ProjectCardProps } from '../../types/project.types';
+import '../../styles/ProjectCard.css';
 
 export function ProjectCard({ project, index, isVisible, mousePos, onClick, layout = 'alternating' }: ProjectCardProps) {
   const isReversed = layout === 'alternating' && index % 2 === 1;
@@ -68,7 +60,7 @@ export function ProjectCard({ project, index, isVisible, mousePos, onClick, layo
               </Button>
               <Button
                 size="sm"
-                className="rgb-border magnetic-button"
+                className="project-card-rgb-border magnetic-button"
                 asChild
               >
                 <a href={project.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>

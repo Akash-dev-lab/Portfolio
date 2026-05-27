@@ -1,15 +1,10 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-
-interface LazySectionProps {
-  children: React.ReactNode;
-  fallback: React.ReactNode;
-  threshold?: number;
-  rootMargin?: string;
-}
+import type { LazySectionProps } from '../types/project.types';
 
 export const LazySection: React.FC<LazySectionProps> = ({ 
   children, 
   fallback, 
+  id,
   threshold = 0.1, 
   rootMargin = '400px' 
 }) => {
@@ -35,7 +30,7 @@ export const LazySection: React.FC<LazySectionProps> = ({
   }, [threshold, rootMargin]);
 
   return (
-    <div ref={containerRef}>
+    <div id={id} ref={containerRef} className="scroll-mt-28">
       {hasVisited ? (
         <Suspense fallback={fallback}>
           {children}

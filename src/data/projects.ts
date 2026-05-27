@@ -1,23 +1,4 @@
-export interface ProjectMedia {
-  type: 'video' | 'image';
-  src?: string;
-  mp4?: string;
-  webm?: string;
-  poster?: string;
-}
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  fullDescription: string;
-  media: ProjectMedia;
-  tags: { label: string; icon: string }[];
-  github: string;
-  demo: string;
-  features: string[];
-  featured?: boolean;
-}
+import type { Project } from '../types/project.types';
 
 export const projects: Project[] = [
   {

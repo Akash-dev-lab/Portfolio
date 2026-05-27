@@ -1,12 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
-  webm?: string;
-  mp4?: string;
-  poster: string;
-  alt: string;
-  className?: string;
-}
+import type {LazyVideoProps} from '../types/global.types'
 
 export const LazyVideo: React.FC<LazyVideoProps> = ({ webm, mp4, poster, alt, className, ...props }) => {
   const containerRef = useRef<HTMLDivElement>(null);

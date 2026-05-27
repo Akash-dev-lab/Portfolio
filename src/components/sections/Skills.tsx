@@ -163,7 +163,6 @@ export function Skills() {
 
   return (
     <section
-      id="skills"
       ref={sectionRef}
       className="relative overflow-hidden bg-secondary/20 py-24 transition-colors duration-500 md:py-32"
     >
@@ -176,7 +175,7 @@ export function Skills() {
       </div>
 
       <div className="pointer-events-none absolute inset-0">
-        <div
+        <div  
           className="absolute left-1/4 top-0 h-96 w-96 rounded-full bg-primary/5 blur-3xl transition-transform duration-300 idle-pulse"
           style={{ transform: `translate(${mousePos.x * 0.02}px, ${mousePos.y * 0.02}px)` }}
         />

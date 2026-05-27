@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Sparkles } from 'lucide-react';
-import type { Project } from '../data/projects';
+import type { Project } from '../types/project.types';
 import { projects } from '../data/projects';
-import { ProjectCard } from '../components/ProjectCard';
+import { ProjectCard } from '../components/cards/ProjectCard';
 import { Button } from '../components/ui/Button';
 
 export function AllProjects() {

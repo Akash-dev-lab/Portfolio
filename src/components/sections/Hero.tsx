@@ -3,9 +3,9 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, OrbitControls } from '@react-three/drei';
 import { ArrowRight, ChevronDown, Download, Sparkles } from 'lucide-react';
 import * as THREE from 'three';
-import { useMobile } from '../hooks/useMobile';
-import { ResumeModal } from '../components/ResumeModal';
-import { Button } from '../components/ui/Button';
+import { useMobile } from '../../hooks/useMobile';
+import { ResumeModal } from '../ResumeModal';
+import { Button } from '../ui/Button';
 
 const Web3Geometry = React.memo(({ onInteraction }: { onInteraction: () => void }) => {
   const meshRef = useRef<THREE.Mesh>(null);

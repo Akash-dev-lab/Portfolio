@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, Suspense, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
 import * as THREE from 'three';
-import { LazyVideo } from '../components/LazyVideo';
+import { LazyVideo } from '../LazyVideo';
 
 // 3D Floating orbs
 const FloatingOrbs = React.memo(() => {
@@ -63,7 +63,6 @@ export function About() {
 
   return (
     <section
-      id="about"
       ref={sectionRef}
       className="relative py-24 md:py-32 overflow-hidden"
     >

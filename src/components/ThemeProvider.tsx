@@ -1,12 +1,6 @@
 import { createContext, useContext, useEffect, useState} from 'react';
 import type { ReactNode } from 'react';
-
-type Theme = 'light' | 'dark';
-
-interface ThemeContextType {
-  theme: Theme;
-  toggleTheme: () => void;
-}
+import type {ThemeContextType, Theme} from '../types/project.types'
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 

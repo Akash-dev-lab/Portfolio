@@ -1,0 +1,98 @@
+    .resume-rgb-dot {
+        background: red;
+        animation:
+            resume-rgb-blink 3s infinite linear,
+            resume-dot-float 2.5s infinite ease-in-out;
+    }
+
+    @keyframes resume-rgb-blink {
+        0% {
+            background: rgb(255, 60, 60);
+        }
+        33% {
+            background: rgb(60, 255, 120);
+        }
+        66% {
+            background: rgb(80, 160, 255);
+        }
+        100% {
+            background: rgb(255, 60, 60);
+        }
+    }
+
+    @keyframes resume-dot-float {
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(1px, -1px);
+        }
+        50% {
+            transform: translate(-1px, 1px);
+        }
+        75% {
+            transform: translate(1px, 1px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+    @keyframes resume-float-vertical {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    .resume-float-vertical {
+        animation: resume-float-vertical 4s ease-in-out infinite;
+    }
+
+    .resume-rgb-border {
+        position: relative;
+        background: transparent !important;
+        border: 3px solid oklch(var(--border));
+        isolation: isolate;
+    }
+
+    .resume-rgb-border::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: conic-gradient(
+            from 0deg,
+            red 0deg 50deg,
+            green 50deg 180deg,
+            blue 180deg 270deg,
+            red 270deg 360deg
+        );
+        background-size: 200% 200%;
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+                mask-composite: exclude;
+        animation: resume-rgb-border-run 2.5s linear infinite;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    @keyframes resume-rgb-border-run {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 50% 100%;
+        }
+        100% {
+            background-position: 300% 50%;
+        }
+    }

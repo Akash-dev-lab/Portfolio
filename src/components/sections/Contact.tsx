@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
+import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/input';
+import { Textarea } from '../../components/ui/textarea';
 import { toast } from 'sonner';
 
 export function Contact() {
@@ -48,7 +48,6 @@ export function Contact() {
 
   return (
     <section
-      id="contact"
       className="relative py-24 md:py-32 overflow-hidden"
     >
       {/* Background decoration */}

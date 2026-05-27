@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        --background: 0.18 0.02 258;
+        --foreground: 0.97 0.01 255;
+        --card: 0.24 0.02 255;
+        --card-foreground: 0.97 0.01 255;
+        --primary: 0.68 0.17 246;
+        --primary-foreground: 0.98 0.01 255;
+        --secondary: 0.29 0.02 255;
+        --secondary-foreground: 0.97 0.01 255;
+        --muted: 0.26 0.02 255;
+        --muted-foreground: 0.73 0.02 255;
+        --accent: 0.78 0.15 82;
+        --accent-foreground: 0.16 0.02 255;
+        --destructive: 0.60 0.25 25;
+        --destructive-foreground: 0.98 0.01 255;
+        --border: 0.90 0.02 255 / 14%;
+        --input: 0.90 0.02 255 / 16%;
+        --ring: 0.68 0.17 246;
+        --scroll-section: 0;
+        --scroll-velocity: 0;
+        --idle-intensity: 0;
+    }
+
+    .light {
+        --background: 0.98 0.01 95;
+        --foreground: 0.23 0.03 250;
+        --card: 0.995 0.01 95;
+        --card-foreground: 0.23 0.03 250;
+        --primary: 0.58 0.18 248;
+        --primary-foreground: 0.99 0.01 95;
+        --secondary: 0.95 0.02 230;
+        --secondary-foreground: 0.23 0.03 250;
+        --muted: 0.94 0.01 220;
+        --muted-foreground: 0.47 0.04 245;
+        --accent: 0.70 0.16 80;
+        --accent-foreground: 0.20 0.03 250;
+        --destructive: 0.55 0.25 25;
+        --destructive-foreground: 0.98 0.01 95;
+        --border: 0.40 0.03 250 / 12%;
+        --input: 0.40 0.03 250 / 10%;
+        --ring: 0.58 0.18 248;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    html {
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: auto;
+        min-height: 100%;
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+        font-family: "Manrope", sans-serif;
+        cursor: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: auto;
+        min-height: 100%;
+        position: relative;
+        background-color: oklch(var(--background));
+        background-image:
+            radial-gradient(circle at 12% 18%, oklch(var(--primary) / 0.16), transparent 22%),
+            radial-gradient(circle at 88% 20%, oklch(var(--accent) / 0.16), transparent 18%),
+            radial-gradient(circle at 50% 65%, oklch(var(--primary) / 0.08), transparent 32%),
+            linear-gradient(180deg, oklch(var(--background)) 0%, oklch(var(--background) / 0.98) 42%, oklch(var(--card) / 0.88) 100%);
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+            linear-gradient(oklch(var(--foreground) / 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, oklch(var(--foreground) / 0.03) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+        opacity: 0.5;
+        z-index: -1;
+    }
+    
+    #root {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Space Grotesk", "Manrope", sans-serif;
+        letter-spacing: -0.05em;
+    }
+    
+    /* Lenis smooth scroll classes - non-locking mode */
+    html.lenis,
+    html.lenis body {
+        height: auto;
+        overflow-y: auto;
+    }
+    
+    .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+    }
+    
+    .lenis.lenis-stopped {
+        overflow: auto !important; /* Changed from hidden to auto */
+    }
+    
+    /* Critical: Never block pointer events during scroll */
+    .lenis.lenis-scrolling {
+        pointer-events: auto !important;
+    }
+    
+    /* Native scroll fallback */
+    html.native-scroll,
+    html.native-scroll body {
+        height: auto !important;
+        overflow-y: auto !important;
+        scroll-behavior: smooth !important;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(oklch(var(--primary) / 0.45), oklch(var(--accent) / 0.45));
+        border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: oklch(var(--primary) / 0.5);
+    }
+}
+
+@layer utilities {
+    
+    /* Reduced motion support - fallback to native scrolling */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+        
+        html {
+            scroll-behavior: auto !important;
+        }
+        
+        body {
+            cursor: auto;
+        }
+    }
+}

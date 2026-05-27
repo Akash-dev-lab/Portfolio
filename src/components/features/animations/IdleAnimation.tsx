@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import '../../../styles/IdleAnimation.css';
 
 export function IdleAnimations() {
   const [isIdle, setIsIdle] = useState(false);

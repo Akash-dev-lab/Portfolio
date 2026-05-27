@@ -1,9 +1,6 @@
 import { X, Download } from 'lucide-react';
-
-interface ResumeModalProps {
-  open: boolean;
-  onClose: () => void;
-}
+import '../styles/ResumeModal.css';
+import type {ResumeModalProps} from '../types/global.types'
 
 export function ResumeModal({ open, onClose }: ResumeModalProps) {
   if (!open) return null;
@@ -90,8 +87,8 @@ function FloatingCard({
   return (
     <div
       className="relative rounded-2xl border border-border p-8
-                 bg-card text-card-foreground flex flex-col items-center shadow-sm rgb-border
-                 animate-float-vertical"
+                 bg-card text-card-foreground flex flex-col items-center shadow-sm resume-rgb-border
+                 resume-float-vertical"
     >
       <h3 className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient text-2xl font-bold mb-6 text-center">
         {title}
@@ -101,7 +98,7 @@ function FloatingCard({
         {items.map((item, i) => (
           <li key={item} className="flex items-center gap-3 text-sm md:text-base">
             <span
-              className="h-2 w-2 rounded-full rgb-dot shrink-0"
+              className="h-2 w-2 rounded-full resume-rgb-dot shrink-0"
               style={{ animationDelay: `${i * 0.4}s` }}
             />
             <span className="text-muted-foreground">{item}</span>

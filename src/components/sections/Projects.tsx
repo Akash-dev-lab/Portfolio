@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { Project } from '../data/projects';
-import { projects } from '../data/projects';
-import { ProjectCard } from '../components/ProjectCard';
-import { Button } from '../components/ui/Button';
+import type { Project } from '../../types/project.types';
+import { projects } from '../../data/projects';
+import { ProjectCard } from '../cards/ProjectCard';
+import { Button } from '../../components/ui/Button';
 
 export function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,7 +48,7 @@ export function Projects() {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="relative overflow-hidden py-24 md:py-32">
+    <section ref={sectionRef} className="relative overflow-hidden py-24 md:py-32">
       <div className="container relative z-10 mx-auto px-4">
         <div className="section-shell mx-auto max-w-6xl">
           <div className="mb-16 grid gap-6 md:grid-cols-[1.3fr_0.7fr] md:items-end">
