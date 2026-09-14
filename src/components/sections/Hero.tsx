@@ -145,33 +145,38 @@ export function Hero() {
           <div className="pointer-events-none absolute -left-16 top-12 h-36 w-36 rounded-full bg-primary/15 blur-3xl" />
           <div className="pointer-events-none absolute -right-12 bottom-10 h-40 w-40 rounded-full bg-accent/20 blur-3xl" />
 
+          {/* Badge row */}
           <div className="mb-6 flex flex-wrap items-center justify-center gap-3 animate-in fade-in slide-in-from-bottom duration-700 delay-200">
-            <span className="section-kicker">Design Engineer</span>
+            <span className="section-kicker">Full Stack Developer</span>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-background/70 px-4 py-2 text-sm font-medium text-muted-foreground">
               <Sparkles className="h-4 w-4 text-accent" />
-              Available for freelance and product work
+              Building real-world web products
             </span>
           </div>
 
+          {/* Eyebrow */}
           <div className="mb-8 animate-in fade-in slide-in-from-bottom duration-700 delay-300">
             <p className="mx-auto max-w-2xl text-sm font-semibold uppercase tracking-[0.35em] text-primary/80">
-              Interactive web experiences with performance-first engineering
+              Full Stack Web Development&nbsp;&bull;&nbsp;Interactive Experiences&nbsp;&bull;&nbsp;3D
             </p>
           </div>
 
+          {/* Headline */}
           <h1 className="font-display mb-6 text-5xl leading-[0.92] animate-in fade-in slide-in-from-bottom duration-700 delay-500 sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-            <span className="block text-foreground/90">Creative systems.</span>
+            <span className="block text-foreground/90">I build web products.</span>
             <span className="animate-gradient block bg-gradient-to-r from-primary via-sky-400 to-accent bg-clip-text text-transparent">
-              Magnetic interfaces.
+              I make them feel alive.
             </span>
           </h1>
 
+          {/* Description */}
           <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-muted-foreground animate-in fade-in slide-in-from-bottom duration-700 delay-700 md:text-xl">
-            I design and build cinematic, high-performance web products that feel premium in motion and remain clean, fast, and reliable in code.
+            I&apos;m a developer focused on building modern, scalable web applications with React, Next.js, Node.js and APIs &mdash; while exploring Three.js, animation, and interactive storytelling to create experiences that go beyond traditional websites.
           </p>
 
+          {/* Capability pills */}
           <div className="mb-10 flex flex-wrap justify-center gap-3 animate-in fade-in slide-in-from-bottom duration-700 delay-700">
-            {['Full-stack delivery', '3D storytelling', 'Conversion-focused UI'].map((item) => (
+            {['Next.js & React', 'Full-stack Development', '3D & Interactive Web'].map((item) => (
               <span
                 key={item}
                 className="rounded-full border border-primary/12 bg-background/70 px-4 py-2 text-sm font-medium text-foreground/80 shadow-sm"
@@ -186,16 +191,22 @@ export function Hero() {
             )}
           </div>
 
-          <div className="flex flex-col items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-1000 sm:flex-row">
+          {/* CTAs */}
+          <div className="flex flex-col items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-1000 sm:flex-row sm:flex-wrap">
             <Button
               size="lg"
               type="button"
-              onClick={() => setShowResumeModal(true)}
-              aria-label="Open resume modal"
-              className="magnetic-button min-w-[220px] rounded-full bg-gradient-to-r from-primary via-sky-500 to-accent px-8 text-primary-foreground shadow-xl shadow-primary/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-primary/35"
+              onClick={() => {
+                const projectsSection = document.querySelector('#projects');
+                if (projectsSection) {
+                  projectsSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              aria-label="Scroll to projects section"
+              className="magnetic-button min-w-[200px] rounded-full bg-gradient-to-r from-primary via-sky-500 to-accent px-8 text-primary-foreground shadow-xl shadow-primary/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-primary/35"
             >
-              <Download className="h-4 w-4" />
-              Download Resume
+              View Projects
+              <ArrowRight className="h-4 w-4" />
             </Button>
             <Button
               size="lg"
@@ -208,10 +219,21 @@ export function Hero() {
                 }
               }}
               aria-label="Scroll to contact section"
-              className="magnetic-button min-w-[220px] rounded-full border border-primary/15 bg-background/70 px-8 text-foreground shadow-lg shadow-black/5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-background/90"
+              className="magnetic-button min-w-[200px] rounded-full border border-primary/15 bg-background/70 px-8 text-foreground shadow-lg shadow-black/5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-background/90"
             >
               Get In Touch
               <ArrowRight className="h-4 w-4" />
+            </Button>
+            <Button
+              size="lg"
+              type="button"
+              variant="secondary"
+              onClick={() => setShowResumeModal(true)}
+              aria-label="Open resume modal"
+              className="magnetic-button min-w-[200px] rounded-full border border-primary/15 bg-background/70 px-8 text-foreground shadow-lg shadow-black/5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-background/90"
+            >
+              <Download className="h-4 w-4" />
+              Download Resume
             </Button>
           </div>
         </div>

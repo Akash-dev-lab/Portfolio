@@ -59,9 +59,8 @@ export function Navigation() {
     <>
       <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6">
         <div
-          className={`glass-panel mx-auto flex max-w-6xl items-center justify-between rounded-full px-4 py-3 transition-all duration-300 md:px-5 ${
-            isScrolled ? 'shadow-soft border-primary/20' : 'border-primary/10'
-          }`}
+          className={`glass-panel mx-auto flex max-w-6xl items-center justify-between rounded-full px-4 py-3 transition-all duration-300 md:px-5 ${isScrolled ? 'shadow-soft border-primary/20' : 'border-primary/10'
+            }`}
         >
           <button
             type="button"

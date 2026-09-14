@@ -122,4 +122,29 @@ export const projects: Project[] = [
     features: ['Interactive charts', 'Real-time updates', 'Custom reports', 'Data export'],
     featured: true,
   },
+  {
+    id: 'okkio',
+    title: 'House Of Okkio',
+    description: 'A complete redesign of House of Okkio — combining luxury eyewear, immersive 3D, interactive motion, and editorial design.',
+    fullDescription: 'Okkio is a modern web application crafted with an emphasis on seamless user experience, high-speed performance, and responsive design across all devices.',
+    media: {
+      type: 'video',
+      mp4: '/assets/Okkio_Project_vedio.mp4',
+      poster: '/Project_images/coming-soon.webp',
+    },
+    tags: [
+      { label: 'Next.js', icon: '/icons/nextjs.svg' },
+      { label: 'Tailwind CSS', icon: '/icons/tailwind.svg' },
+      { label: 'TypeScript', icon: '/icons/typescript.svg' },
+      { label: 'Three.js', icon: '/icons/threejs.svg' },
+      { label: 'GSAP', icon: '/icons/gsap.svg' },
+      { label: 'Lottie', icon: '/icons/lottie.svg' },
+      { label: 'Vercel', icon: '/icons/vercel.svg' },
+    ],
+    github: 'https://github.com/Akash-dev-lab/okkio',
+    demo: 'https://okkio.vercel.app/',
+    features: ['Interactive UI', 'Performance Optimized', 'Modern Animations', 'Responsive Design'],
+    featured: true,
+  },
 ];
+
